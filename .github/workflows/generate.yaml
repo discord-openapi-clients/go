@@ -20,7 +20,7 @@ jobs:
       
       - name: Cleanup
         run: |
-          for f in $(cat .openapi-generator/FILES) ; do ; rm -f "$f"; done
+          for f in $(cat .openapi-generator/FILES) ; do rm -f "$f"; done
 
       - name: whoami
         run: |
