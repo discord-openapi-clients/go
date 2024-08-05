@@ -1,0 +1,50 @@
+name: Generate OpenAPI client
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+
+jobs:
+  generate:
+    if: ${{ github.event.label.name == 'Submodule Update' || github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+      
+      - name: Cleanup
+        run: |
+          for f in $(cat .openapi-generator/FILES) ; do ; rm -f "$f"; done
+
+      - name: whoami
+        run: |
+          echo "CURRENT_USER=$(whoami)" >> $GITHUB_ENV
+
+      - name: Generate client
+        uses: addnab/docker-run-action@v3
+        with:
+          image: openapitools/openapi-generator-cli
+          options: -v ${{ github.workspace }}:/local
+          run: |
+            openapi-generator-cli generate -i /local/discord-api-spec-3.0/openapi-3.0.yaml -g go -o /local/out --git-user-id discord-openapi-clients --git-repo-id go/v1
+            shopt -s dotglob
+            chown -R ${{ env.CURRENT_USER }}:${{ env.CURRENT_USER }} /local/out
+            mv /local/out/* /local/
+      
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: '*.go go.mod go.sum'
+          author_name: 'discord-api-clients'
+          author_email: 'rxdn@users.noreply.github.com'
+          message: 'Generate OpenAPI client'
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git push
