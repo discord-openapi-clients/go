@@ -1,4 +1,4 @@
-/usr/local/bin/docker-entrypoint.sh generate -i /local/discord-api-spec-3.0/openapi-3.0.yaml -g go -o /local/out --git-user-id discord-openapi-clients --git-repo-id go/v1
+/usr/local/bin/docker-entrypoint.sh generate -i /local/discord-api-spec-3.0/openapi-3.0.yaml -g go -o /local/out -c /local/config.yaml --git-user-id discord-openapi-clients --git-repo-id go/v1
 shopt -s dotglob
 mv /local/out/* /local/
 rm -rf /local/out
