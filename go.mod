@@ -1,3 +1,4 @@
+regen
 module github.com/discord-openapi-clients/go/v1
 
 go 1.18
