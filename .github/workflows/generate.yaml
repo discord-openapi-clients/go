@@ -38,11 +38,13 @@ jobs:
           shell: bash
           run: |
             /usr/local/bin/docker-entrypoint.sh generate -i /local/discord-api-spec-3.0/openapi-3.0.yaml -g go -o /local/out --git-user-id discord-openapi-clients --git-repo-id go/v1
-            mv /local/out/* /local/out/.* /local/
+            shopt -s dotglob
+            mv /local/out/* /local/
+            rm -rf /local/out
  
       - uses: EndBug/add-and-commit@v9
         with:
-          add: '*.go go.mod go.sum'
+          add: '.'
           author_name: 'discord-api-clients'
           author_email: 'rxdn@users.noreply.github.com'
           message: 'Generate OpenAPI client'
