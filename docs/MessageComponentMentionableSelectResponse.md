@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **MinValues** | Pointer to **NullableInt32** |  | [optional] 
 **MaxValues** | Pointer to **NullableInt32** |  | [optional] 
 **Disabled** | Pointer to **NullableBool** |  | [optional] 
+**DefaultValues** | Pointer to [**[]MessageComponentMentionableSelectResponseDefaultValuesInner**](MessageComponentMentionableSelectResponseDefaultValuesInner.md) |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,41 @@ HasDisabled returns a boolean if a field has been set.
 `func (o *MessageComponentMentionableSelectResponse) UnsetDisabled()`
 
 UnsetDisabled ensures that no value is present for Disabled, not even an explicit nil
+### GetDefaultValues
+
+`func (o *MessageComponentMentionableSelectResponse) GetDefaultValues() []MessageComponentMentionableSelectResponseDefaultValuesInner`
+
+GetDefaultValues returns the DefaultValues field if non-nil, zero value otherwise.
+
+### GetDefaultValuesOk
+
+`func (o *MessageComponentMentionableSelectResponse) GetDefaultValuesOk() (*[]MessageComponentMentionableSelectResponseDefaultValuesInner, bool)`
+
+GetDefaultValuesOk returns a tuple with the DefaultValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValues
+
+`func (o *MessageComponentMentionableSelectResponse) SetDefaultValues(v []MessageComponentMentionableSelectResponseDefaultValuesInner)`
+
+SetDefaultValues sets DefaultValues field to given value.
+
+### HasDefaultValues
+
+`func (o *MessageComponentMentionableSelectResponse) HasDefaultValues() bool`
+
+HasDefaultValues returns a boolean if a field has been set.
+
+### SetDefaultValuesNil
+
+`func (o *MessageComponentMentionableSelectResponse) SetDefaultValuesNil(b bool)`
+
+ SetDefaultValuesNil sets the value for DefaultValues to be an explicit nil
+
+### UnsetDefaultValues
+`func (o *MessageComponentMentionableSelectResponse) UnsetDefaultValues()`
+
+UnsetDefaultValues ensures that no value is present for DefaultValues, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

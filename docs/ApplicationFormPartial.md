@@ -10,12 +10,14 @@ Name | Type | Description | Notes
 **TeamId** | Pointer to **string** |  | [optional] 
 **Flags** | Pointer to **NullableInt32** |  | [optional] 
 **InteractionsEndpointUrl** | Pointer to **NullableString** |  | [optional] 
+**ExplicitContentFilter** | Pointer to [**NullableApplicationExplicitContentFilterTypes**](ApplicationExplicitContentFilterTypes.md) |  | [optional] 
 **MaxParticipants** | Pointer to **NullableInt32** |  | [optional] 
 **Type** | Pointer to [**NullableApplicationTypes**](ApplicationTypes.md) |  | [optional] 
 **Tags** | Pointer to **[]string** |  | [optional] 
 **CustomInstallUrl** | Pointer to **NullableString** |  | [optional] 
 **InstallParams** | Pointer to [**NullableApplicationOAuth2InstallParams**](ApplicationOAuth2InstallParams.md) |  | [optional] 
 **RoleConnectionsVerificationUrl** | Pointer to **NullableString** |  | [optional] 
+**IntegrationTypesConfig** | Pointer to [**map[string]ApplicationFormPartialIntegrationTypesConfigValue**](ApplicationFormPartialIntegrationTypesConfigValue.md) |  | [optional] 
 
 ## Methods
 
@@ -236,6 +238,41 @@ HasInteractionsEndpointUrl returns a boolean if a field has been set.
 `func (o *ApplicationFormPartial) UnsetInteractionsEndpointUrl()`
 
 UnsetInteractionsEndpointUrl ensures that no value is present for InteractionsEndpointUrl, not even an explicit nil
+### GetExplicitContentFilter
+
+`func (o *ApplicationFormPartial) GetExplicitContentFilter() ApplicationExplicitContentFilterTypes`
+
+GetExplicitContentFilter returns the ExplicitContentFilter field if non-nil, zero value otherwise.
+
+### GetExplicitContentFilterOk
+
+`func (o *ApplicationFormPartial) GetExplicitContentFilterOk() (*ApplicationExplicitContentFilterTypes, bool)`
+
+GetExplicitContentFilterOk returns a tuple with the ExplicitContentFilter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExplicitContentFilter
+
+`func (o *ApplicationFormPartial) SetExplicitContentFilter(v ApplicationExplicitContentFilterTypes)`
+
+SetExplicitContentFilter sets ExplicitContentFilter field to given value.
+
+### HasExplicitContentFilter
+
+`func (o *ApplicationFormPartial) HasExplicitContentFilter() bool`
+
+HasExplicitContentFilter returns a boolean if a field has been set.
+
+### SetExplicitContentFilterNil
+
+`func (o *ApplicationFormPartial) SetExplicitContentFilterNil(b bool)`
+
+ SetExplicitContentFilterNil sets the value for ExplicitContentFilter to be an explicit nil
+
+### UnsetExplicitContentFilter
+`func (o *ApplicationFormPartial) UnsetExplicitContentFilter()`
+
+UnsetExplicitContentFilter ensures that no value is present for ExplicitContentFilter, not even an explicit nil
 ### GetMaxParticipants
 
 `func (o *ApplicationFormPartial) GetMaxParticipants() int32`
@@ -446,6 +483,41 @@ HasRoleConnectionsVerificationUrl returns a boolean if a field has been set.
 `func (o *ApplicationFormPartial) UnsetRoleConnectionsVerificationUrl()`
 
 UnsetRoleConnectionsVerificationUrl ensures that no value is present for RoleConnectionsVerificationUrl, not even an explicit nil
+### GetIntegrationTypesConfig
+
+`func (o *ApplicationFormPartial) GetIntegrationTypesConfig() map[string]ApplicationFormPartialIntegrationTypesConfigValue`
+
+GetIntegrationTypesConfig returns the IntegrationTypesConfig field if non-nil, zero value otherwise.
+
+### GetIntegrationTypesConfigOk
+
+`func (o *ApplicationFormPartial) GetIntegrationTypesConfigOk() (*map[string]ApplicationFormPartialIntegrationTypesConfigValue, bool)`
+
+GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationTypesConfig
+
+`func (o *ApplicationFormPartial) SetIntegrationTypesConfig(v map[string]ApplicationFormPartialIntegrationTypesConfigValue)`
+
+SetIntegrationTypesConfig sets IntegrationTypesConfig field to given value.
+
+### HasIntegrationTypesConfig
+
+`func (o *ApplicationFormPartial) HasIntegrationTypesConfig() bool`
+
+HasIntegrationTypesConfig returns a boolean if a field has been set.
+
+### SetIntegrationTypesConfigNil
+
+`func (o *ApplicationFormPartial) SetIntegrationTypesConfigNil(b bool)`
+
+ SetIntegrationTypesConfigNil sets the value for IntegrationTypesConfig to be an explicit nil
+
+### UnsetIntegrationTypesConfig
+`func (o *ApplicationFormPartial) UnsetIntegrationTypesConfig()`
+
+UnsetIntegrationTypesConfig ensures that no value is present for IntegrationTypesConfig, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

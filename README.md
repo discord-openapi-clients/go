@@ -93,6 +93,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**BulkUpdateGuildRoles**](docs/DefaultAPI.md#bulkupdateguildroles) | **Patch** /guilds/{guild_id}/roles | 
 *DefaultAPI* | [**ConsumeEntitlement**](docs/DefaultAPI.md#consumeentitlement) | **Post** /applications/{application_id}/entitlements/{entitlement_id}/consume | 
 *DefaultAPI* | [**CreateApplicationCommand**](docs/DefaultAPI.md#createapplicationcommand) | **Post** /applications/{application_id}/commands | 
+*DefaultAPI* | [**CreateApplicationEmoji**](docs/DefaultAPI.md#createapplicationemoji) | **Post** /applications/{application_id}/emojis | 
 *DefaultAPI* | [**CreateAutoModerationRule**](docs/DefaultAPI.md#createautomoderationrule) | **Post** /guilds/{guild_id}/auto-moderation/rules | 
 *DefaultAPI* | [**CreateChannelInvite**](docs/DefaultAPI.md#createchannelinvite) | **Post** /channels/{channel_id}/invites | 
 *DefaultAPI* | [**CreateDm**](docs/DefaultAPI.md#createdm) | **Post** /users/@me/channels | 
@@ -117,6 +118,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**DeleteAllMessageReactions**](docs/DefaultAPI.md#deleteallmessagereactions) | **Delete** /channels/{channel_id}/messages/{message_id}/reactions | 
 *DefaultAPI* | [**DeleteAllMessageReactionsByEmoji**](docs/DefaultAPI.md#deleteallmessagereactionsbyemoji) | **Delete** /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name} | 
 *DefaultAPI* | [**DeleteApplicationCommand**](docs/DefaultAPI.md#deleteapplicationcommand) | **Delete** /applications/{application_id}/commands/{command_id} | 
+*DefaultAPI* | [**DeleteApplicationEmoji**](docs/DefaultAPI.md#deleteapplicationemoji) | **Delete** /applications/{application_id}/emojis/{emoji_id} | 
 *DefaultAPI* | [**DeleteApplicationUserRoleConnection**](docs/DefaultAPI.md#deleteapplicationuserroleconnection) | **Delete** /users/@me/applications/{application_id}/role-connection | 
 *DefaultAPI* | [**DeleteAutoModerationRule**](docs/DefaultAPI.md#deleteautomoderationrule) | **Delete** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
 *DefaultAPI* | [**DeleteChannel**](docs/DefaultAPI.md#deletechannel) | **Delete** /channels/{channel_id} | 
@@ -148,8 +150,10 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ExecuteWebhook**](docs/DefaultAPI.md#executewebhook) | **Post** /webhooks/{webhook_id}/{webhook_token} | 
 *DefaultAPI* | [**FollowChannel**](docs/DefaultAPI.md#followchannel) | **Post** /channels/{channel_id}/followers | 
 *DefaultAPI* | [**GetActiveGuildThreads**](docs/DefaultAPI.md#getactiveguildthreads) | **Get** /guilds/{guild_id}/threads/active | 
+*DefaultAPI* | [**GetAnswerVoters**](docs/DefaultAPI.md#getanswervoters) | **Get** /channels/{channel_id}/polls/{message_id}/answers/{answer_id} | 
 *DefaultAPI* | [**GetApplication**](docs/DefaultAPI.md#getapplication) | **Get** /applications/{application_id} | 
 *DefaultAPI* | [**GetApplicationCommand**](docs/DefaultAPI.md#getapplicationcommand) | **Get** /applications/{application_id}/commands/{command_id} | 
+*DefaultAPI* | [**GetApplicationEmoji**](docs/DefaultAPI.md#getapplicationemoji) | **Get** /applications/{application_id}/emojis/{emoji_id} | 
 *DefaultAPI* | [**GetApplicationRoleConnectionsMetadata**](docs/DefaultAPI.md#getapplicationroleconnectionsmetadata) | **Get** /applications/{application_id}/role-connections/metadata | 
 *DefaultAPI* | [**GetApplicationUserRoleConnection**](docs/DefaultAPI.md#getapplicationuserroleconnection) | **Get** /users/@me/applications/{application_id}/role-connection | 
 *DefaultAPI* | [**GetAutoModerationRule**](docs/DefaultAPI.md#getautomoderationrule) | **Get** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
@@ -185,11 +189,13 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**GetMyUser**](docs/DefaultAPI.md#getmyuser) | **Get** /users/@me | 
 *DefaultAPI* | [**GetOriginalWebhookMessage**](docs/DefaultAPI.md#getoriginalwebhookmessage) | **Get** /webhooks/{webhook_id}/{webhook_token}/messages/@original | 
 *DefaultAPI* | [**GetPublicKeys**](docs/DefaultAPI.md#getpublickeys) | **Get** /oauth2/keys | 
+*DefaultAPI* | [**GetSelfVoiceState**](docs/DefaultAPI.md#getselfvoicestate) | **Get** /guilds/{guild_id}/voice-states/@me | 
 *DefaultAPI* | [**GetSoundboardDefaultSounds**](docs/DefaultAPI.md#getsoundboarddefaultsounds) | **Get** /soundboard-default-sounds | 
 *DefaultAPI* | [**GetStageInstance**](docs/DefaultAPI.md#getstageinstance) | **Get** /stage-instances/{channel_id} | 
 *DefaultAPI* | [**GetSticker**](docs/DefaultAPI.md#getsticker) | **Get** /stickers/{sticker_id} | 
 *DefaultAPI* | [**GetThreadMember**](docs/DefaultAPI.md#getthreadmember) | **Get** /channels/{channel_id}/thread-members/{user_id} | 
 *DefaultAPI* | [**GetUser**](docs/DefaultAPI.md#getuser) | **Get** /users/{user_id} | 
+*DefaultAPI* | [**GetVoiceState**](docs/DefaultAPI.md#getvoicestate) | **Get** /guilds/{guild_id}/voice-states/{user_id} | 
 *DefaultAPI* | [**GetWebhook**](docs/DefaultAPI.md#getwebhook) | **Get** /webhooks/{webhook_id} | 
 *DefaultAPI* | [**GetWebhookByToken**](docs/DefaultAPI.md#getwebhookbytoken) | **Get** /webhooks/{webhook_id}/{webhook_token} | 
 *DefaultAPI* | [**GetWebhookMessage**](docs/DefaultAPI.md#getwebhookmessage) | **Get** /webhooks/{webhook_id}/{webhook_token}/messages/{message_id} | 
@@ -199,6 +205,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**LeaveGuild**](docs/DefaultAPI.md#leaveguild) | **Delete** /users/@me/guilds/{guild_id} | 
 *DefaultAPI* | [**LeaveThread**](docs/DefaultAPI.md#leavethread) | **Delete** /channels/{channel_id}/thread-members/@me | 
 *DefaultAPI* | [**ListApplicationCommands**](docs/DefaultAPI.md#listapplicationcommands) | **Get** /applications/{application_id}/commands | 
+*DefaultAPI* | [**ListApplicationEmojis**](docs/DefaultAPI.md#listapplicationemojis) | **Get** /applications/{application_id}/emojis | 
 *DefaultAPI* | [**ListAutoModerationRules**](docs/DefaultAPI.md#listautomoderationrules) | **Get** /guilds/{guild_id}/auto-moderation/rules | 
 *DefaultAPI* | [**ListChannelInvites**](docs/DefaultAPI.md#listchannelinvites) | **Get** /channels/{channel_id}/invites | 
 *DefaultAPI* | [**ListChannelWebhooks**](docs/DefaultAPI.md#listchannelwebhooks) | **Get** /channels/{channel_id}/webhooks | 
@@ -230,6 +237,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**ListThreadMembers**](docs/DefaultAPI.md#listthreadmembers) | **Get** /channels/{channel_id}/thread-members | 
 *DefaultAPI* | [**ListVoiceRegions**](docs/DefaultAPI.md#listvoiceregions) | **Get** /voice/regions | 
 *DefaultAPI* | [**PinMessage**](docs/DefaultAPI.md#pinmessage) | **Put** /channels/{channel_id}/pins/{message_id} | 
+*DefaultAPI* | [**PollExpire**](docs/DefaultAPI.md#pollexpire) | **Post** /channels/{channel_id}/polls/{message_id}/expire | 
 *DefaultAPI* | [**PreviewPruneGuild**](docs/DefaultAPI.md#previewpruneguild) | **Get** /guilds/{guild_id}/prune | 
 *DefaultAPI* | [**PruneGuild**](docs/DefaultAPI.md#pruneguild) | **Post** /guilds/{guild_id}/prune | 
 *DefaultAPI* | [**PutGuildsOnboarding**](docs/DefaultAPI.md#putguildsonboarding) | **Put** /guilds/{guild_id}/onboarding | 
@@ -243,6 +251,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**UnpinMessage**](docs/DefaultAPI.md#unpinmessage) | **Delete** /channels/{channel_id}/pins/{message_id} | 
 *DefaultAPI* | [**UpdateApplication**](docs/DefaultAPI.md#updateapplication) | **Patch** /applications/{application_id} | 
 *DefaultAPI* | [**UpdateApplicationCommand**](docs/DefaultAPI.md#updateapplicationcommand) | **Patch** /applications/{application_id}/commands/{command_id} | 
+*DefaultAPI* | [**UpdateApplicationEmoji**](docs/DefaultAPI.md#updateapplicationemoji) | **Patch** /applications/{application_id}/emojis/{emoji_id} | 
 *DefaultAPI* | [**UpdateApplicationRoleConnectionsMetadata**](docs/DefaultAPI.md#updateapplicationroleconnectionsmetadata) | **Put** /applications/{application_id}/role-connections/metadata | 
 *DefaultAPI* | [**UpdateApplicationUserRoleConnection**](docs/DefaultAPI.md#updateapplicationuserroleconnection) | **Put** /users/@me/applications/{application_id}/role-connection | 
 *DefaultAPI* | [**UpdateAutoModerationRule**](docs/DefaultAPI.md#updateautomoderationrule) | **Patch** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
@@ -269,6 +278,7 @@ Class | Method | HTTP request | Description
 *DefaultAPI* | [**UpdateWebhook**](docs/DefaultAPI.md#updatewebhook) | **Patch** /webhooks/{webhook_id} | 
 *DefaultAPI* | [**UpdateWebhookByToken**](docs/DefaultAPI.md#updatewebhookbytoken) | **Patch** /webhooks/{webhook_id}/{webhook_token} | 
 *DefaultAPI* | [**UpdateWebhookMessage**](docs/DefaultAPI.md#updatewebhookmessage) | **Patch** /webhooks/{webhook_id}/{webhook_token}/messages/{message_id} | 
+*DefaultAPI* | [**UploadApplicationAttachment**](docs/DefaultAPI.md#uploadapplicationattachment) | **Post** /applications/{application_id}/attachment | 
 
 
 ## Documentation For Models
@@ -276,6 +286,7 @@ Class | Method | HTTP request | Description
  - [AccountResponse](docs/AccountResponse.md)
  - [ActionRow](docs/ActionRow.md)
  - [ActionRowComponentsInner](docs/ActionRowComponentsInner.md)
+ - [ActivitiesAttachmentResponse](docs/ActivitiesAttachmentResponse.md)
  - [AddGroupDmUserRequest](docs/AddGroupDmUserRequest.md)
  - [AddGuildMemberRequest](docs/AddGuildMemberRequest.md)
  - [AfkTimeouts](docs/AfkTimeouts.md)
@@ -292,6 +303,7 @@ Class | Method | HTTP request | Description
  - [ApplicationCommandCreateRequestOptionsInner](docs/ApplicationCommandCreateRequestOptionsInner.md)
  - [ApplicationCommandIntegerOption](docs/ApplicationCommandIntegerOption.md)
  - [ApplicationCommandIntegerOptionResponse](docs/ApplicationCommandIntegerOptionResponse.md)
+ - [ApplicationCommandInteractionMetadataResponse](docs/ApplicationCommandInteractionMetadataResponse.md)
  - [ApplicationCommandMentionableOption](docs/ApplicationCommandMentionableOption.md)
  - [ApplicationCommandMentionableOptionResponse](docs/ApplicationCommandMentionableOptionResponse.md)
  - [ApplicationCommandNumberOption](docs/ApplicationCommandNumberOption.md)
@@ -322,9 +334,14 @@ Class | Method | HTTP request | Description
  - [ApplicationCommandUpdateRequest](docs/ApplicationCommandUpdateRequest.md)
  - [ApplicationCommandUserOption](docs/ApplicationCommandUserOption.md)
  - [ApplicationCommandUserOptionResponse](docs/ApplicationCommandUserOptionResponse.md)
+ - [ApplicationExplicitContentFilterTypes](docs/ApplicationExplicitContentFilterTypes.md)
  - [ApplicationFormPartial](docs/ApplicationFormPartial.md)
  - [ApplicationFormPartialDescription](docs/ApplicationFormPartialDescription.md)
+ - [ApplicationFormPartialIntegrationTypesConfigValue](docs/ApplicationFormPartialIntegrationTypesConfigValue.md)
  - [ApplicationIncomingWebhookResponse](docs/ApplicationIncomingWebhookResponse.md)
+ - [ApplicationIntegrationType](docs/ApplicationIntegrationType.md)
+ - [ApplicationIntegrationTypeConfiguration](docs/ApplicationIntegrationTypeConfiguration.md)
+ - [ApplicationIntegrationTypeConfigurationResponse](docs/ApplicationIntegrationTypeConfigurationResponse.md)
  - [ApplicationOAuth2InstallParams](docs/ApplicationOAuth2InstallParams.md)
  - [ApplicationOAuth2InstallParamsResponse](docs/ApplicationOAuth2InstallParamsResponse.md)
  - [ApplicationResponse](docs/ApplicationResponse.md)
@@ -332,6 +349,7 @@ Class | Method | HTTP request | Description
  - [ApplicationRoleConnectionsMetadataItemResponse](docs/ApplicationRoleConnectionsMetadataItemResponse.md)
  - [ApplicationTypes](docs/ApplicationTypes.md)
  - [ApplicationUserRoleConnectionResponse](docs/ApplicationUserRoleConnectionResponse.md)
+ - [AttachmentResponse](docs/AttachmentResponse.md)
  - [AuditLogActionTypes](docs/AuditLogActionTypes.md)
  - [AuditLogEntryResponse](docs/AuditLogEntryResponse.md)
  - [AuditLogObjectChangeResponse](docs/AuditLogObjectChangeResponse.md)
@@ -345,6 +363,7 @@ Class | Method | HTTP request | Description
  - [BasicApplicationResponse](docs/BasicApplicationResponse.md)
  - [BasicMessageResponse](docs/BasicMessageResponse.md)
  - [BasicMessageResponseComponentsInner](docs/BasicMessageResponseComponentsInner.md)
+ - [BasicMessageResponseInteractionMetadata](docs/BasicMessageResponseInteractionMetadata.md)
  - [BasicMessageResponseMentionChannelsInner](docs/BasicMessageResponseMentionChannelsInner.md)
  - [BasicMessageResponseNonce](docs/BasicMessageResponseNonce.md)
  - [BlockMessageAction](docs/BlockMessageAction.md)
@@ -366,6 +385,7 @@ Class | Method | HTTP request | Description
  - [ChannelPermissionOverwrites](docs/ChannelPermissionOverwrites.md)
  - [ChannelSelect](docs/ChannelSelect.md)
  - [ChannelSelectDefaultValue](docs/ChannelSelectDefaultValue.md)
+ - [ChannelSelectDefaultValueResponse](docs/ChannelSelectDefaultValueResponse.md)
  - [ChannelTypes](docs/ChannelTypes.md)
  - [CommandPermissionResponse](docs/CommandPermissionResponse.md)
  - [CommandPermissionsResponse](docs/CommandPermissionsResponse.md)
@@ -374,6 +394,7 @@ Class | Method | HTTP request | Description
  - [ConnectedAccountProviders](docs/ConnectedAccountProviders.md)
  - [ConnectedAccountResponse](docs/ConnectedAccountResponse.md)
  - [ConnectedAccountVisibility](docs/ConnectedAccountVisibility.md)
+ - [CreateApplicationEmojiRequest](docs/CreateApplicationEmojiRequest.md)
  - [CreateAutoModerationRuleRequest](docs/CreateAutoModerationRuleRequest.md)
  - [CreateChannelInviteRequest](docs/CreateChannelInviteRequest.md)
  - [CreateDm200Response](docs/CreateDm200Response.md)
@@ -514,6 +535,7 @@ Class | Method | HTTP request | Description
  - [InteractionApplicationCommandAutocompleteCallbackStringData](docs/InteractionApplicationCommandAutocompleteCallbackStringData.md)
  - [InteractionApplicationCommandAutocompleteCallbackStringDataChoicesInner](docs/InteractionApplicationCommandAutocompleteCallbackStringDataChoicesInner.md)
  - [InteractionCallbackTypes](docs/InteractionCallbackTypes.md)
+ - [InteractionContextType](docs/InteractionContextType.md)
  - [InteractionTypes](docs/InteractionTypes.md)
  - [InviteApplicationResponse](docs/InviteApplicationResponse.md)
  - [InviteChannelRecipientResponse](docs/InviteChannelRecipientResponse.md)
@@ -527,6 +549,7 @@ Class | Method | HTTP request | Description
  - [KeywordTriggerMetadataResponse](docs/KeywordTriggerMetadataResponse.md)
  - [KeywordUpsertRequest](docs/KeywordUpsertRequest.md)
  - [KeywordUpsertRequestPartial](docs/KeywordUpsertRequestPartial.md)
+ - [ListApplicationEmojisResponse](docs/ListApplicationEmojisResponse.md)
  - [ListAutoModerationRules200ResponseInner](docs/ListAutoModerationRules200ResponseInner.md)
  - [ListChannelInvites200ResponseInner](docs/ListChannelInvites200ResponseInner.md)
  - [ListChannelWebhooks200ResponseInner](docs/ListChannelWebhooks200ResponseInner.md)
@@ -554,7 +577,9 @@ Class | Method | HTTP request | Description
  - [MessageComponentChannelSelectResponse](docs/MessageComponentChannelSelectResponse.md)
  - [MessageComponentEmojiResponse](docs/MessageComponentEmojiResponse.md)
  - [MessageComponentInputTextResponse](docs/MessageComponentInputTextResponse.md)
+ - [MessageComponentInteractionMetadataResponse](docs/MessageComponentInteractionMetadataResponse.md)
  - [MessageComponentMentionableSelectResponse](docs/MessageComponentMentionableSelectResponse.md)
+ - [MessageComponentMentionableSelectResponseDefaultValuesInner](docs/MessageComponentMentionableSelectResponseDefaultValuesInner.md)
  - [MessageComponentRoleSelectResponse](docs/MessageComponentRoleSelectResponse.md)
  - [MessageComponentStringSelectResponse](docs/MessageComponentStringSelectResponse.md)
  - [MessageComponentStringSelectResponseOptionsInner](docs/MessageComponentStringSelectResponseOptionsInner.md)
@@ -579,11 +604,15 @@ Class | Method | HTTP request | Description
  - [MessageReferenceType](docs/MessageReferenceType.md)
  - [MessageResponse](docs/MessageResponse.md)
  - [MessageRoleSubscriptionDataResponse](docs/MessageRoleSubscriptionDataResponse.md)
+ - [MessageSnapshotResponse](docs/MessageSnapshotResponse.md)
  - [MessageStickerItemResponse](docs/MessageStickerItemResponse.md)
  - [MessageType](docs/MessageType.md)
  - [MetadataItemTypes](docs/MetadataItemTypes.md)
+ - [MinimalContentMessageResponse](docs/MinimalContentMessageResponse.md)
  - [ModalInteractionCallbackData](docs/ModalInteractionCallbackData.md)
  - [ModalInteractionCallbackRequest](docs/ModalInteractionCallbackRequest.md)
+ - [ModalSubmitInteractionMetadataResponse](docs/ModalSubmitInteractionMetadataResponse.md)
+ - [ModalSubmitInteractionMetadataResponseTriggeringInteractionMetadata](docs/ModalSubmitInteractionMetadataResponseTriggeringInteractionMetadata.md)
  - [MyGuildResponse](docs/MyGuildResponse.md)
  - [NewMemberActionResponse](docs/NewMemberActionResponse.md)
  - [NewMemberActionType](docs/NewMemberActionType.md)
@@ -598,6 +627,19 @@ Class | Method | HTTP request | Description
  - [PartialDiscordIntegrationResponse](docs/PartialDiscordIntegrationResponse.md)
  - [PartialExternalConnectionIntegrationResponse](docs/PartialExternalConnectionIntegrationResponse.md)
  - [PartialGuildSubscriptionIntegrationResponse](docs/PartialGuildSubscriptionIntegrationResponse.md)
+ - [PollAnswerCreateRequest](docs/PollAnswerCreateRequest.md)
+ - [PollAnswerDetailsResponse](docs/PollAnswerDetailsResponse.md)
+ - [PollAnswerResponse](docs/PollAnswerResponse.md)
+ - [PollCreateRequest](docs/PollCreateRequest.md)
+ - [PollEmoji](docs/PollEmoji.md)
+ - [PollEmojiCreateRequest](docs/PollEmojiCreateRequest.md)
+ - [PollLayoutTypes](docs/PollLayoutTypes.md)
+ - [PollMedia](docs/PollMedia.md)
+ - [PollMediaCreateRequest](docs/PollMediaCreateRequest.md)
+ - [PollMediaResponse](docs/PollMediaResponse.md)
+ - [PollResponse](docs/PollResponse.md)
+ - [PollResultsEntryResponse](docs/PollResultsEntryResponse.md)
+ - [PollResultsResponse](docs/PollResultsResponse.md)
  - [PongInteractionCallbackRequest](docs/PongInteractionCallbackRequest.md)
  - [PremiumGuildTiers](docs/PremiumGuildTiers.md)
  - [PremiumTypes](docs/PremiumTypes.md)
@@ -612,6 +654,7 @@ Class | Method | HTTP request | Description
  - [PurchaseType](docs/PurchaseType.md)
  - [QuarantineUserAction](docs/QuarantineUserAction.md)
  - [QuarantineUserActionResponse](docs/QuarantineUserActionResponse.md)
+ - [ReactionTypes](docs/ReactionTypes.md)
  - [ResolvedObjectsResponse](docs/ResolvedObjectsResponse.md)
  - [ResourceChannelResponse](docs/ResourceChannelResponse.md)
  - [RichEmbed](docs/RichEmbed.md)
@@ -624,6 +667,7 @@ Class | Method | HTTP request | Description
  - [RichEmbedVideo](docs/RichEmbedVideo.md)
  - [RoleSelect](docs/RoleSelect.md)
  - [RoleSelectDefaultValue](docs/RoleSelectDefaultValue.md)
+ - [RoleSelectDefaultValueResponse](docs/RoleSelectDefaultValueResponse.md)
  - [ScheduledEventResponse](docs/ScheduledEventResponse.md)
  - [ScheduledEventUserResponse](docs/ScheduledEventUserResponse.md)
  - [SelectOption](docs/SelectOption.md)
@@ -659,6 +703,7 @@ Class | Method | HTTP request | Description
  - [ThreadResponse](docs/ThreadResponse.md)
  - [ThreadSortOrder](docs/ThreadSortOrder.md)
  - [ThreadsResponse](docs/ThreadsResponse.md)
+ - [UpdateApplicationEmojiRequest](docs/UpdateApplicationEmojiRequest.md)
  - [UpdateApplicationUserRoleConnectionRequest](docs/UpdateApplicationUserRoleConnectionRequest.md)
  - [UpdateAutoModerationRuleRequest](docs/UpdateAutoModerationRuleRequest.md)
  - [UpdateChannelRequest](docs/UpdateChannelRequest.md)
@@ -682,6 +727,7 @@ Class | Method | HTTP request | Description
  - [UpdateVoiceStateRequest](docs/UpdateVoiceStateRequest.md)
  - [UpdateWebhookByTokenRequest](docs/UpdateWebhookByTokenRequest.md)
  - [UpdateWebhookRequest](docs/UpdateWebhookRequest.md)
+ - [UserAvatarDecorationResponse](docs/UserAvatarDecorationResponse.md)
  - [UserCommunicationDisabledAction](docs/UserCommunicationDisabledAction.md)
  - [UserCommunicationDisabledActionMetadata](docs/UserCommunicationDisabledActionMetadata.md)
  - [UserCommunicationDisabledActionMetadataResponse](docs/UserCommunicationDisabledActionMetadataResponse.md)
@@ -692,6 +738,7 @@ Class | Method | HTTP request | Description
  - [UserResponse](docs/UserResponse.md)
  - [UserSelect](docs/UserSelect.md)
  - [UserSelectDefaultValue](docs/UserSelectDefaultValue.md)
+ - [UserSelectDefaultValueResponse](docs/UserSelectDefaultValueResponse.md)
  - [VanityURLErrorResponse](docs/VanityURLErrorResponse.md)
  - [VanityURLResponse](docs/VanityURLResponse.md)
  - [VerificationLevels](docs/VerificationLevels.md)
@@ -700,6 +747,7 @@ Class | Method | HTTP request | Description
  - [VoiceScheduledEventCreateRequest](docs/VoiceScheduledEventCreateRequest.md)
  - [VoiceScheduledEventPatchRequestPartial](docs/VoiceScheduledEventPatchRequestPartial.md)
  - [VoiceScheduledEventResponse](docs/VoiceScheduledEventResponse.md)
+ - [VoiceStateResponse](docs/VoiceStateResponse.md)
  - [WebhookSlackEmbed](docs/WebhookSlackEmbed.md)
  - [WebhookSlackEmbedField](docs/WebhookSlackEmbedField.md)
  - [WebhookSourceChannelResponse](docs/WebhookSourceChannelResponse.md)

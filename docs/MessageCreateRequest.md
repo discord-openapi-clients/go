@@ -11,8 +11,10 @@ Name | Type | Description | Notes
 **Components** | Pointer to [**[]ActionRow**](ActionRow.md) |  | [optional] 
 **Flags** | Pointer to **NullableInt32** |  | [optional] 
 **Attachments** | Pointer to [**[]MessageAttachmentRequest**](MessageAttachmentRequest.md) |  | [optional] 
+**Poll** | Pointer to [**NullablePollCreateRequest**](PollCreateRequest.md) |  | [optional] 
 **MessageReference** | Pointer to [**NullableMessageReferenceRequest**](MessageReferenceRequest.md) |  | [optional] 
 **Nonce** | Pointer to [**NullableBasicMessageResponseNonce**](BasicMessageResponseNonce.md) |  | [optional] 
+**EnforceNonce** | Pointer to **NullableBool** |  | [optional] 
 **Tts** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
@@ -279,6 +281,41 @@ HasAttachments returns a boolean if a field has been set.
 `func (o *MessageCreateRequest) UnsetAttachments()`
 
 UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
+### GetPoll
+
+`func (o *MessageCreateRequest) GetPoll() PollCreateRequest`
+
+GetPoll returns the Poll field if non-nil, zero value otherwise.
+
+### GetPollOk
+
+`func (o *MessageCreateRequest) GetPollOk() (*PollCreateRequest, bool)`
+
+GetPollOk returns a tuple with the Poll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoll
+
+`func (o *MessageCreateRequest) SetPoll(v PollCreateRequest)`
+
+SetPoll sets Poll field to given value.
+
+### HasPoll
+
+`func (o *MessageCreateRequest) HasPoll() bool`
+
+HasPoll returns a boolean if a field has been set.
+
+### SetPollNil
+
+`func (o *MessageCreateRequest) SetPollNil(b bool)`
+
+ SetPollNil sets the value for Poll to be an explicit nil
+
+### UnsetPoll
+`func (o *MessageCreateRequest) UnsetPoll()`
+
+UnsetPoll ensures that no value is present for Poll, not even an explicit nil
 ### GetMessageReference
 
 `func (o *MessageCreateRequest) GetMessageReference() MessageReferenceRequest`
@@ -349,6 +386,41 @@ HasNonce returns a boolean if a field has been set.
 `func (o *MessageCreateRequest) UnsetNonce()`
 
 UnsetNonce ensures that no value is present for Nonce, not even an explicit nil
+### GetEnforceNonce
+
+`func (o *MessageCreateRequest) GetEnforceNonce() bool`
+
+GetEnforceNonce returns the EnforceNonce field if non-nil, zero value otherwise.
+
+### GetEnforceNonceOk
+
+`func (o *MessageCreateRequest) GetEnforceNonceOk() (*bool, bool)`
+
+GetEnforceNonceOk returns a tuple with the EnforceNonce field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnforceNonce
+
+`func (o *MessageCreateRequest) SetEnforceNonce(v bool)`
+
+SetEnforceNonce sets EnforceNonce field to given value.
+
+### HasEnforceNonce
+
+`func (o *MessageCreateRequest) HasEnforceNonce() bool`
+
+HasEnforceNonce returns a boolean if a field has been set.
+
+### SetEnforceNonceNil
+
+`func (o *MessageCreateRequest) SetEnforceNonceNil(b bool)`
+
+ SetEnforceNonceNil sets the value for EnforceNonce to be an explicit nil
+
+### UnsetEnforceNonce
+`func (o *MessageCreateRequest) UnsetEnforceNonce()`
+
+UnsetEnforceNonce ensures that no value is present for EnforceNonce, not even an explicit nil
 ### GetTts
 
 `func (o *MessageCreateRequest) GetTts() bool`

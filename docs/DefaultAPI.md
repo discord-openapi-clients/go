@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**BulkUpdateGuildRoles**](DefaultAPI.md#BulkUpdateGuildRoles) | **Patch** /guilds/{guild_id}/roles | 
 [**ConsumeEntitlement**](DefaultAPI.md#ConsumeEntitlement) | **Post** /applications/{application_id}/entitlements/{entitlement_id}/consume | 
 [**CreateApplicationCommand**](DefaultAPI.md#CreateApplicationCommand) | **Post** /applications/{application_id}/commands | 
+[**CreateApplicationEmoji**](DefaultAPI.md#CreateApplicationEmoji) | **Post** /applications/{application_id}/emojis | 
 [**CreateAutoModerationRule**](DefaultAPI.md#CreateAutoModerationRule) | **Post** /guilds/{guild_id}/auto-moderation/rules | 
 [**CreateChannelInvite**](DefaultAPI.md#CreateChannelInvite) | **Post** /channels/{channel_id}/invites | 
 [**CreateDm**](DefaultAPI.md#CreateDm) | **Post** /users/@me/channels | 
@@ -42,6 +43,7 @@ Method | HTTP request | Description
 [**DeleteAllMessageReactions**](DefaultAPI.md#DeleteAllMessageReactions) | **Delete** /channels/{channel_id}/messages/{message_id}/reactions | 
 [**DeleteAllMessageReactionsByEmoji**](DefaultAPI.md#DeleteAllMessageReactionsByEmoji) | **Delete** /channels/{channel_id}/messages/{message_id}/reactions/{emoji_name} | 
 [**DeleteApplicationCommand**](DefaultAPI.md#DeleteApplicationCommand) | **Delete** /applications/{application_id}/commands/{command_id} | 
+[**DeleteApplicationEmoji**](DefaultAPI.md#DeleteApplicationEmoji) | **Delete** /applications/{application_id}/emojis/{emoji_id} | 
 [**DeleteApplicationUserRoleConnection**](DefaultAPI.md#DeleteApplicationUserRoleConnection) | **Delete** /users/@me/applications/{application_id}/role-connection | 
 [**DeleteAutoModerationRule**](DefaultAPI.md#DeleteAutoModerationRule) | **Delete** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
 [**DeleteChannel**](DefaultAPI.md#DeleteChannel) | **Delete** /channels/{channel_id} | 
@@ -73,8 +75,10 @@ Method | HTTP request | Description
 [**ExecuteWebhook**](DefaultAPI.md#ExecuteWebhook) | **Post** /webhooks/{webhook_id}/{webhook_token} | 
 [**FollowChannel**](DefaultAPI.md#FollowChannel) | **Post** /channels/{channel_id}/followers | 
 [**GetActiveGuildThreads**](DefaultAPI.md#GetActiveGuildThreads) | **Get** /guilds/{guild_id}/threads/active | 
+[**GetAnswerVoters**](DefaultAPI.md#GetAnswerVoters) | **Get** /channels/{channel_id}/polls/{message_id}/answers/{answer_id} | 
 [**GetApplication**](DefaultAPI.md#GetApplication) | **Get** /applications/{application_id} | 
 [**GetApplicationCommand**](DefaultAPI.md#GetApplicationCommand) | **Get** /applications/{application_id}/commands/{command_id} | 
+[**GetApplicationEmoji**](DefaultAPI.md#GetApplicationEmoji) | **Get** /applications/{application_id}/emojis/{emoji_id} | 
 [**GetApplicationRoleConnectionsMetadata**](DefaultAPI.md#GetApplicationRoleConnectionsMetadata) | **Get** /applications/{application_id}/role-connections/metadata | 
 [**GetApplicationUserRoleConnection**](DefaultAPI.md#GetApplicationUserRoleConnection) | **Get** /users/@me/applications/{application_id}/role-connection | 
 [**GetAutoModerationRule**](DefaultAPI.md#GetAutoModerationRule) | **Get** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
@@ -110,11 +114,13 @@ Method | HTTP request | Description
 [**GetMyUser**](DefaultAPI.md#GetMyUser) | **Get** /users/@me | 
 [**GetOriginalWebhookMessage**](DefaultAPI.md#GetOriginalWebhookMessage) | **Get** /webhooks/{webhook_id}/{webhook_token}/messages/@original | 
 [**GetPublicKeys**](DefaultAPI.md#GetPublicKeys) | **Get** /oauth2/keys | 
+[**GetSelfVoiceState**](DefaultAPI.md#GetSelfVoiceState) | **Get** /guilds/{guild_id}/voice-states/@me | 
 [**GetSoundboardDefaultSounds**](DefaultAPI.md#GetSoundboardDefaultSounds) | **Get** /soundboard-default-sounds | 
 [**GetStageInstance**](DefaultAPI.md#GetStageInstance) | **Get** /stage-instances/{channel_id} | 
 [**GetSticker**](DefaultAPI.md#GetSticker) | **Get** /stickers/{sticker_id} | 
 [**GetThreadMember**](DefaultAPI.md#GetThreadMember) | **Get** /channels/{channel_id}/thread-members/{user_id} | 
 [**GetUser**](DefaultAPI.md#GetUser) | **Get** /users/{user_id} | 
+[**GetVoiceState**](DefaultAPI.md#GetVoiceState) | **Get** /guilds/{guild_id}/voice-states/{user_id} | 
 [**GetWebhook**](DefaultAPI.md#GetWebhook) | **Get** /webhooks/{webhook_id} | 
 [**GetWebhookByToken**](DefaultAPI.md#GetWebhookByToken) | **Get** /webhooks/{webhook_id}/{webhook_token} | 
 [**GetWebhookMessage**](DefaultAPI.md#GetWebhookMessage) | **Get** /webhooks/{webhook_id}/{webhook_token}/messages/{message_id} | 
@@ -124,6 +130,7 @@ Method | HTTP request | Description
 [**LeaveGuild**](DefaultAPI.md#LeaveGuild) | **Delete** /users/@me/guilds/{guild_id} | 
 [**LeaveThread**](DefaultAPI.md#LeaveThread) | **Delete** /channels/{channel_id}/thread-members/@me | 
 [**ListApplicationCommands**](DefaultAPI.md#ListApplicationCommands) | **Get** /applications/{application_id}/commands | 
+[**ListApplicationEmojis**](DefaultAPI.md#ListApplicationEmojis) | **Get** /applications/{application_id}/emojis | 
 [**ListAutoModerationRules**](DefaultAPI.md#ListAutoModerationRules) | **Get** /guilds/{guild_id}/auto-moderation/rules | 
 [**ListChannelInvites**](DefaultAPI.md#ListChannelInvites) | **Get** /channels/{channel_id}/invites | 
 [**ListChannelWebhooks**](DefaultAPI.md#ListChannelWebhooks) | **Get** /channels/{channel_id}/webhooks | 
@@ -155,6 +162,7 @@ Method | HTTP request | Description
 [**ListThreadMembers**](DefaultAPI.md#ListThreadMembers) | **Get** /channels/{channel_id}/thread-members | 
 [**ListVoiceRegions**](DefaultAPI.md#ListVoiceRegions) | **Get** /voice/regions | 
 [**PinMessage**](DefaultAPI.md#PinMessage) | **Put** /channels/{channel_id}/pins/{message_id} | 
+[**PollExpire**](DefaultAPI.md#PollExpire) | **Post** /channels/{channel_id}/polls/{message_id}/expire | 
 [**PreviewPruneGuild**](DefaultAPI.md#PreviewPruneGuild) | **Get** /guilds/{guild_id}/prune | 
 [**PruneGuild**](DefaultAPI.md#PruneGuild) | **Post** /guilds/{guild_id}/prune | 
 [**PutGuildsOnboarding**](DefaultAPI.md#PutGuildsOnboarding) | **Put** /guilds/{guild_id}/onboarding | 
@@ -168,6 +176,7 @@ Method | HTTP request | Description
 [**UnpinMessage**](DefaultAPI.md#UnpinMessage) | **Delete** /channels/{channel_id}/pins/{message_id} | 
 [**UpdateApplication**](DefaultAPI.md#UpdateApplication) | **Patch** /applications/{application_id} | 
 [**UpdateApplicationCommand**](DefaultAPI.md#UpdateApplicationCommand) | **Patch** /applications/{application_id}/commands/{command_id} | 
+[**UpdateApplicationEmoji**](DefaultAPI.md#UpdateApplicationEmoji) | **Patch** /applications/{application_id}/emojis/{emoji_id} | 
 [**UpdateApplicationRoleConnectionsMetadata**](DefaultAPI.md#UpdateApplicationRoleConnectionsMetadata) | **Put** /applications/{application_id}/role-connections/metadata | 
 [**UpdateApplicationUserRoleConnection**](DefaultAPI.md#UpdateApplicationUserRoleConnection) | **Put** /users/@me/applications/{application_id}/role-connection | 
 [**UpdateAutoModerationRule**](DefaultAPI.md#UpdateAutoModerationRule) | **Patch** /guilds/{guild_id}/auto-moderation/rules/{rule_id} | 
@@ -194,6 +203,7 @@ Method | HTTP request | Description
 [**UpdateWebhook**](DefaultAPI.md#UpdateWebhook) | **Patch** /webhooks/{webhook_id} | 
 [**UpdateWebhookByToken**](DefaultAPI.md#UpdateWebhookByToken) | **Patch** /webhooks/{webhook_id}/{webhook_token} | 
 [**UpdateWebhookMessage**](DefaultAPI.md#UpdateWebhookMessage) | **Patch** /webhooks/{webhook_id}/{webhook_token}/messages/{message_id} | 
+[**UploadApplicationAttachment**](DefaultAPI.md#UploadApplicationAttachment) | **Post** /applications/{application_id}/attachment | 
 
 
 
@@ -1174,6 +1184,76 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateApplicationEmoji
+
+> EmojiResponse CreateApplicationEmoji(ctx, applicationId).CreateApplicationEmojiRequest(createApplicationEmojiRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+	createApplicationEmojiRequest := *openapiclient.NewCreateApplicationEmojiRequest("Name_example", string(123)) // CreateApplicationEmojiRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.CreateApplicationEmoji(context.Background(), applicationId).CreateApplicationEmojiRequest(createApplicationEmojiRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.CreateApplicationEmoji``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateApplicationEmoji`: EmojiResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.CreateApplicationEmoji`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateApplicationEmojiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createApplicationEmojiRequest** | [**CreateApplicationEmojiRequest**](CreateApplicationEmojiRequest.md) |  | 
+
+### Return type
+
+[**EmojiResponse**](EmojiResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
 
 ### HTTP request headers
 
@@ -2851,6 +2931,75 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteApplicationEmoji
+
+> DeleteApplicationEmoji(ctx, applicationId, emojiId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+	emojiId := "emojiId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.DefaultAPI.DeleteApplicationEmoji(context.Background(), applicationId, emojiId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.DeleteApplicationEmoji``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+**emojiId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteApplicationEmojiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
 
 ### HTTP request headers
 
@@ -5034,6 +5183,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAnswerVoters
+
+> PollAnswerDetailsResponse GetAnswerVoters(ctx, channelId, messageId, answerId).After(after).Limit(limit).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	channelId := "channelId_example" // string | 
+	messageId := "messageId_example" // string | 
+	answerId := int32(56) // int32 | 
+	after := "after_example" // string |  (optional)
+	limit := int32(56) // int32 |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetAnswerVoters(context.Background(), channelId, messageId, answerId).After(after).Limit(limit).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetAnswerVoters``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAnswerVoters`: PollAnswerDetailsResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetAnswerVoters`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**channelId** | **string** |  | 
+**messageId** | **string** |  | 
+**answerId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAnswerVotersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **after** | **string** |  | 
+ **limit** | **int32** |  | 
+
+### Return type
+
+[**PollAnswerDetailsResponse**](PollAnswerDetailsResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetApplication
 
 > PrivateApplicationResponse GetApplication(ctx, applicationId).Execute()
@@ -5162,6 +5389,77 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetApplicationEmoji
+
+> EmojiResponse GetApplicationEmoji(ctx, applicationId, emojiId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+	emojiId := "emojiId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetApplicationEmoji(context.Background(), applicationId, emojiId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetApplicationEmoji``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetApplicationEmoji`: EmojiResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetApplicationEmoji`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+**emojiId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetApplicationEmojiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**EmojiResponse**](EmojiResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
 
 ### HTTP request headers
 
@@ -7556,6 +7854,74 @@ Other parameters are passed through a pointer to a apiGetPublicKeysRequest struc
 [[Back to README]](../README.md)
 
 
+## GetSelfVoiceState
+
+> VoiceStateResponse GetSelfVoiceState(ctx, guildId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	guildId := "guildId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetSelfVoiceState(context.Background(), guildId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetSelfVoiceState``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSelfVoiceState`: VoiceStateResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetSelfVoiceState`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**guildId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSelfVoiceStateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**VoiceStateResponse**](VoiceStateResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetSoundboardDefaultSounds
 
 > []SoundboardSoundResponse GetSoundboardDefaultSounds(ctx).Execute()
@@ -7877,6 +8243,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserResponse**](UserResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetVoiceState
+
+> VoiceStateResponse GetVoiceState(ctx, guildId, userId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	guildId := "guildId_example" // string | 
+	userId := "userId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.GetVoiceState(context.Background(), guildId, userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.GetVoiceState``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetVoiceState`: VoiceStateResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.GetVoiceState`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**guildId** | **string** |  | 
+**userId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetVoiceStateRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**VoiceStateResponse**](VoiceStateResponse.md)
 
 ### Authorization
 
@@ -8504,6 +8941,74 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListApplicationEmojis
+
+> ListApplicationEmojisResponse ListApplicationEmojis(ctx, applicationId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.ListApplicationEmojis(context.Background(), applicationId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ListApplicationEmojis``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListApplicationEmojis`: ListApplicationEmojisResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.ListApplicationEmojis`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListApplicationEmojisRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ListApplicationEmojisResponse**](ListApplicationEmojisResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
 
 ### HTTP request headers
 
@@ -9852,7 +10357,7 @@ Name | Type | Description  | Notes
 
 ## ListMessageReactionsByEmoji
 
-> []UserResponse ListMessageReactionsByEmoji(ctx, channelId, messageId, emojiName).After(after).Limit(limit).Execute()
+> []UserResponse ListMessageReactionsByEmoji(ctx, channelId, messageId, emojiName).After(after).Limit(limit).Type_(type_).Execute()
 
 
 
@@ -9874,10 +10379,11 @@ func main() {
 	emojiName := "emojiName_example" // string | 
 	after := "after_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
+	type_ := ReactionTypes(56) // ReactionTypes |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DefaultAPI.ListMessageReactionsByEmoji(context.Background(), channelId, messageId, emojiName).After(after).Limit(limit).Execute()
+	resp, r, err := apiClient.DefaultAPI.ListMessageReactionsByEmoji(context.Background(), channelId, messageId, emojiName).After(after).Limit(limit).Type_(type_).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.ListMessageReactionsByEmoji``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -9909,6 +10415,7 @@ Name | Type | Description  | Notes
 
  **after** | **string** |  | 
  **limit** | **int32** |  | 
+ **type_** | **ReactionTypes** |  | 
 
 ### Return type
 
@@ -10665,6 +11172,77 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PollExpire
+
+> MessageResponse PollExpire(ctx, channelId, messageId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	channelId := "channelId_example" // string | 
+	messageId := "messageId_example" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.PollExpire(context.Background(), channelId, messageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.PollExpire``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PollExpire`: MessageResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.PollExpire`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**channelId** | **string** |  | 
+**messageId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPollExpireRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**MessageResponse**](MessageResponse.md)
 
 ### Authorization
 
@@ -11590,6 +12168,79 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateApplicationEmoji
+
+> EmojiResponse UpdateApplicationEmoji(ctx, applicationId, emojiId).UpdateApplicationEmojiRequest(updateApplicationEmojiRequest).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+	emojiId := "emojiId_example" // string | 
+	updateApplicationEmojiRequest := *openapiclient.NewUpdateApplicationEmojiRequest() // UpdateApplicationEmojiRequest | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.UpdateApplicationEmoji(context.Background(), applicationId, emojiId).UpdateApplicationEmojiRequest(updateApplicationEmojiRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.UpdateApplicationEmoji``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateApplicationEmoji`: EmojiResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.UpdateApplicationEmoji`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+**emojiId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateApplicationEmojiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateApplicationEmojiRequest** | [**UpdateApplicationEmojiRequest**](UpdateApplicationEmojiRequest.md) |  | 
+
+### Return type
+
+[**EmojiResponse**](EmojiResponse.md)
+
+### Authorization
+
+[BotToken](../README.md#BotToken)
 
 ### HTTP request headers
 
@@ -13450,6 +14101,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/x-www-form-urlencoded, multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UploadApplicationAttachment
+
+> ActivitiesAttachmentResponse UploadApplicationAttachment(ctx, applicationId).File(file).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/discord-openapi-clients/go/v1"
+)
+
+func main() {
+	applicationId := "applicationId_example" // string | 
+	file := os.NewFile(1234, "some_file") // *os.File | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.DefaultAPI.UploadApplicationAttachment(context.Background(), applicationId).File(file).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `DefaultAPI.UploadApplicationAttachment``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UploadApplicationAttachment`: ActivitiesAttachmentResponse
+	fmt.Fprintf(os.Stdout, "Response from `DefaultAPI.UploadApplicationAttachment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUploadApplicationAttachmentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **file** | ***os.File** |  | 
+
+### Return type
+
+[**ActivitiesAttachmentResponse**](ActivitiesAttachmentResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2), [BotToken](../README.md#BotToken)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

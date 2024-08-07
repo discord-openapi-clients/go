@@ -24,6 +24,7 @@ type IncomingWebhookInteractionRequest struct {
 	AllowedMentions NullableMessageAllowedMentionsRequest `json:"allowed_mentions,omitempty"`
 	Components []ActionRow `json:"components,omitempty"`
 	Attachments []MessageAttachmentRequest `json:"attachments,omitempty"`
+	Poll NullablePollCreateRequest `json:"poll,omitempty"`
 	Tts NullableBool `json:"tts,omitempty"`
 	Flags NullableInt32 `json:"flags,omitempty"`
 }
@@ -228,6 +229,48 @@ func (o *IncomingWebhookInteractionRequest) SetAttachments(v []MessageAttachment
 	o.Attachments = v
 }
 
+// GetPoll returns the Poll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncomingWebhookInteractionRequest) GetPoll() PollCreateRequest {
+	if o == nil || IsNil(o.Poll.Get()) {
+		var ret PollCreateRequest
+		return ret
+	}
+	return *o.Poll.Get()
+}
+
+// GetPollOk returns a tuple with the Poll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IncomingWebhookInteractionRequest) GetPollOk() (*PollCreateRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Poll.Get(), o.Poll.IsSet()
+}
+
+// HasPoll returns a boolean if a field has been set.
+func (o *IncomingWebhookInteractionRequest) HasPoll() bool {
+	if o != nil && o.Poll.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPoll gets a reference to the given NullablePollCreateRequest and assigns it to the Poll field.
+func (o *IncomingWebhookInteractionRequest) SetPoll(v PollCreateRequest) {
+	o.Poll.Set(&v)
+}
+// SetPollNil sets the value for Poll to be an explicit nil
+func (o *IncomingWebhookInteractionRequest) SetPollNil() {
+	o.Poll.Set(nil)
+}
+
+// UnsetPoll ensures that no value is present for Poll, not even an explicit nil
+func (o *IncomingWebhookInteractionRequest) UnsetPoll() {
+	o.Poll.Unset()
+}
+
 // GetTts returns the Tts field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncomingWebhookInteractionRequest) GetTts() bool {
 	if o == nil || IsNil(o.Tts.Get()) {
@@ -336,6 +379,9 @@ func (o IncomingWebhookInteractionRequest) ToMap() (map[string]interface{}, erro
 	}
 	if o.Attachments != nil {
 		toSerialize["attachments"] = o.Attachments
+	}
+	if o.Poll.IsSet() {
+		toSerialize["poll"] = o.Poll.Get()
 	}
 	if o.Tts.IsSet() {
 		toSerialize["tts"] = o.Tts.Get()

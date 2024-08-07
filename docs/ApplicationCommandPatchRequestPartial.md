@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **Options** | Pointer to [**[]ApplicationCommandCreateRequestOptionsInner**](ApplicationCommandCreateRequestOptionsInner.md) |  | [optional] 
 **DefaultMemberPermissions** | Pointer to **NullableInt32** |  | [optional] 
 **DmPermission** | Pointer to **NullableBool** |  | [optional] 
+**Contexts** | Pointer to [**[]InteractionContextType**](InteractionContextType.md) |  | [optional] 
+**IntegrationTypes** | Pointer to [**[]ApplicationIntegrationType**](ApplicationIntegrationType.md) |  | [optional] 
 
 ## Methods
 
@@ -266,6 +268,76 @@ HasDmPermission returns a boolean if a field has been set.
 `func (o *ApplicationCommandPatchRequestPartial) UnsetDmPermission()`
 
 UnsetDmPermission ensures that no value is present for DmPermission, not even an explicit nil
+### GetContexts
+
+`func (o *ApplicationCommandPatchRequestPartial) GetContexts() []InteractionContextType`
+
+GetContexts returns the Contexts field if non-nil, zero value otherwise.
+
+### GetContextsOk
+
+`func (o *ApplicationCommandPatchRequestPartial) GetContextsOk() (*[]InteractionContextType, bool)`
+
+GetContextsOk returns a tuple with the Contexts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContexts
+
+`func (o *ApplicationCommandPatchRequestPartial) SetContexts(v []InteractionContextType)`
+
+SetContexts sets Contexts field to given value.
+
+### HasContexts
+
+`func (o *ApplicationCommandPatchRequestPartial) HasContexts() bool`
+
+HasContexts returns a boolean if a field has been set.
+
+### SetContextsNil
+
+`func (o *ApplicationCommandPatchRequestPartial) SetContextsNil(b bool)`
+
+ SetContextsNil sets the value for Contexts to be an explicit nil
+
+### UnsetContexts
+`func (o *ApplicationCommandPatchRequestPartial) UnsetContexts()`
+
+UnsetContexts ensures that no value is present for Contexts, not even an explicit nil
+### GetIntegrationTypes
+
+`func (o *ApplicationCommandPatchRequestPartial) GetIntegrationTypes() []ApplicationIntegrationType`
+
+GetIntegrationTypes returns the IntegrationTypes field if non-nil, zero value otherwise.
+
+### GetIntegrationTypesOk
+
+`func (o *ApplicationCommandPatchRequestPartial) GetIntegrationTypesOk() (*[]ApplicationIntegrationType, bool)`
+
+GetIntegrationTypesOk returns a tuple with the IntegrationTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationTypes
+
+`func (o *ApplicationCommandPatchRequestPartial) SetIntegrationTypes(v []ApplicationIntegrationType)`
+
+SetIntegrationTypes sets IntegrationTypes field to given value.
+
+### HasIntegrationTypes
+
+`func (o *ApplicationCommandPatchRequestPartial) HasIntegrationTypes() bool`
+
+HasIntegrationTypes returns a boolean if a field has been set.
+
+### SetIntegrationTypesNil
+
+`func (o *ApplicationCommandPatchRequestPartial) SetIntegrationTypesNil(b bool)`
+
+ SetIntegrationTypesNil sets the value for IntegrationTypes to be an explicit nil
+
+### UnsetIntegrationTypes
+`func (o *ApplicationCommandPatchRequestPartial) UnsetIntegrationTypes()`
+
+UnsetIntegrationTypes ensures that no value is present for IntegrationTypes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -29,6 +29,7 @@ type MessageComponentChannelSelectResponse struct {
 	MaxValues NullableInt32 `json:"max_values,omitempty"`
 	Disabled NullableBool `json:"disabled,omitempty"`
 	ChannelTypes []ChannelTypes `json:"channel_types,omitempty"`
+	DefaultValues []ChannelSelectDefaultValueResponse `json:"default_values,omitempty"`
 }
 
 type _MessageComponentChannelSelectResponse MessageComponentChannelSelectResponse
@@ -326,6 +327,39 @@ func (o *MessageComponentChannelSelectResponse) SetChannelTypes(v []ChannelTypes
 	o.ChannelTypes = v
 }
 
+// GetDefaultValues returns the DefaultValues field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageComponentChannelSelectResponse) GetDefaultValues() []ChannelSelectDefaultValueResponse {
+	if o == nil {
+		var ret []ChannelSelectDefaultValueResponse
+		return ret
+	}
+	return o.DefaultValues
+}
+
+// GetDefaultValuesOk returns a tuple with the DefaultValues field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageComponentChannelSelectResponse) GetDefaultValuesOk() ([]ChannelSelectDefaultValueResponse, bool) {
+	if o == nil || IsNil(o.DefaultValues) {
+		return nil, false
+	}
+	return o.DefaultValues, true
+}
+
+// HasDefaultValues returns a boolean if a field has been set.
+func (o *MessageComponentChannelSelectResponse) HasDefaultValues() bool {
+	if o != nil && !IsNil(o.DefaultValues) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultValues gets a reference to the given []ChannelSelectDefaultValueResponse and assigns it to the DefaultValues field.
+func (o *MessageComponentChannelSelectResponse) SetDefaultValues(v []ChannelSelectDefaultValueResponse) {
+	o.DefaultValues = v
+}
+
 func (o MessageComponentChannelSelectResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -353,6 +387,9 @@ func (o MessageComponentChannelSelectResponse) ToMap() (map[string]interface{}, 
 	}
 	if o.ChannelTypes != nil {
 		toSerialize["channel_types"] = o.ChannelTypes
+	}
+	if o.DefaultValues != nil {
+		toSerialize["default_values"] = o.DefaultValues
 	}
 	return toSerialize, nil
 }

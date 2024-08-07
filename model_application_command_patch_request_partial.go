@@ -26,6 +26,8 @@ type ApplicationCommandPatchRequestPartial struct {
 	Options []ApplicationCommandCreateRequestOptionsInner `json:"options,omitempty"`
 	DefaultMemberPermissions NullableInt32 `json:"default_member_permissions,omitempty"`
 	DmPermission NullableBool `json:"dm_permission,omitempty"`
+	Contexts []InteractionContextType `json:"contexts,omitempty"`
+	IntegrationTypes []ApplicationIntegrationType `json:"integration_types,omitempty"`
 }
 
 // NewApplicationCommandPatchRequestPartial instantiates a new ApplicationCommandPatchRequestPartial object
@@ -302,6 +304,72 @@ func (o *ApplicationCommandPatchRequestPartial) UnsetDmPermission() {
 	o.DmPermission.Unset()
 }
 
+// GetContexts returns the Contexts field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationCommandPatchRequestPartial) GetContexts() []InteractionContextType {
+	if o == nil {
+		var ret []InteractionContextType
+		return ret
+	}
+	return o.Contexts
+}
+
+// GetContextsOk returns a tuple with the Contexts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationCommandPatchRequestPartial) GetContextsOk() ([]InteractionContextType, bool) {
+	if o == nil || IsNil(o.Contexts) {
+		return nil, false
+	}
+	return o.Contexts, true
+}
+
+// HasContexts returns a boolean if a field has been set.
+func (o *ApplicationCommandPatchRequestPartial) HasContexts() bool {
+	if o != nil && !IsNil(o.Contexts) {
+		return true
+	}
+
+	return false
+}
+
+// SetContexts gets a reference to the given []InteractionContextType and assigns it to the Contexts field.
+func (o *ApplicationCommandPatchRequestPartial) SetContexts(v []InteractionContextType) {
+	o.Contexts = v
+}
+
+// GetIntegrationTypes returns the IntegrationTypes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationCommandPatchRequestPartial) GetIntegrationTypes() []ApplicationIntegrationType {
+	if o == nil {
+		var ret []ApplicationIntegrationType
+		return ret
+	}
+	return o.IntegrationTypes
+}
+
+// GetIntegrationTypesOk returns a tuple with the IntegrationTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationCommandPatchRequestPartial) GetIntegrationTypesOk() ([]ApplicationIntegrationType, bool) {
+	if o == nil || IsNil(o.IntegrationTypes) {
+		return nil, false
+	}
+	return o.IntegrationTypes, true
+}
+
+// HasIntegrationTypes returns a boolean if a field has been set.
+func (o *ApplicationCommandPatchRequestPartial) HasIntegrationTypes() bool {
+	if o != nil && !IsNil(o.IntegrationTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationTypes gets a reference to the given []ApplicationIntegrationType and assigns it to the IntegrationTypes field.
+func (o *ApplicationCommandPatchRequestPartial) SetIntegrationTypes(v []ApplicationIntegrationType) {
+	o.IntegrationTypes = v
+}
+
 func (o ApplicationCommandPatchRequestPartial) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -332,6 +400,12 @@ func (o ApplicationCommandPatchRequestPartial) ToMap() (map[string]interface{}, 
 	}
 	if o.DmPermission.IsSet() {
 		toSerialize["dm_permission"] = o.DmPermission.Get()
+	}
+	if o.Contexts != nil {
+		toSerialize["contexts"] = o.Contexts
+	}
+	if o.IntegrationTypes != nil {
+		toSerialize["integration_types"] = o.IntegrationTypes
 	}
 	return toSerialize, nil
 }

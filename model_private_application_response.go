@@ -38,6 +38,7 @@ type PrivateApplicationResponse struct {
 	PrivacyPolicyUrl NullableString `json:"privacy_policy_url,omitempty"`
 	CustomInstallUrl NullableString `json:"custom_install_url,omitempty"`
 	InstallParams NullableApplicationOAuth2InstallParamsResponse `json:"install_params,omitempty"`
+	IntegrationTypesConfig map[string]ApplicationIntegrationTypeConfigurationResponse `json:"integration_types_config,omitempty"`
 	VerifyKey string `json:"verify_key"`
 	Flags int32 `json:"flags"`
 	MaxParticipants NullableInt32 `json:"max_participants,omitempty"`
@@ -47,6 +48,7 @@ type PrivateApplicationResponse struct {
 	RoleConnectionsVerificationUrl NullableString `json:"role_connections_verification_url,omitempty"`
 	Owner UserResponse `json:"owner"`
 	ApproximateGuildCount NullableInt32 `json:"approximate_guild_count,omitempty"`
+	ExplicitContentFilter ApplicationExplicitContentFilterTypes `json:"explicit_content_filter"`
 	Team NullableTeamResponse `json:"team,omitempty"`
 }
 
@@ -56,7 +58,7 @@ type _PrivateApplicationResponse PrivateApplicationResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse) *PrivateApplicationResponse {
+func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse, explicitContentFilter ApplicationExplicitContentFilterTypes) *PrivateApplicationResponse {
 	this := PrivateApplicationResponse{}
 	this.Id = id
 	this.Name = name
@@ -65,6 +67,7 @@ func NewPrivateApplicationResponse(id string, name string, description string, v
 	this.Flags = flags
 	this.RedirectUris = redirectUris
 	this.Owner = owner
+	this.ExplicitContentFilter = explicitContentFilter
 	return &this
 }
 
@@ -707,6 +710,39 @@ func (o *PrivateApplicationResponse) UnsetInstallParams() {
 	o.InstallParams.Unset()
 }
 
+// GetIntegrationTypesConfig returns the IntegrationTypesConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PrivateApplicationResponse) GetIntegrationTypesConfig() map[string]ApplicationIntegrationTypeConfigurationResponse {
+	if o == nil {
+		var ret map[string]ApplicationIntegrationTypeConfigurationResponse
+		return ret
+	}
+	return o.IntegrationTypesConfig
+}
+
+// GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PrivateApplicationResponse) GetIntegrationTypesConfigOk() (*map[string]ApplicationIntegrationTypeConfigurationResponse, bool) {
+	if o == nil || IsNil(o.IntegrationTypesConfig) {
+		return nil, false
+	}
+	return &o.IntegrationTypesConfig, true
+}
+
+// HasIntegrationTypesConfig returns a boolean if a field has been set.
+func (o *PrivateApplicationResponse) HasIntegrationTypesConfig() bool {
+	if o != nil && !IsNil(o.IntegrationTypesConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationTypesConfig gets a reference to the given map[string]ApplicationIntegrationTypeConfigurationResponse and assigns it to the IntegrationTypesConfig field.
+func (o *PrivateApplicationResponse) SetIntegrationTypesConfig(v map[string]ApplicationIntegrationTypeConfigurationResponse) {
+	o.IntegrationTypesConfig = v
+}
+
 // GetVerifyKey returns the VerifyKey field value
 func (o *PrivateApplicationResponse) GetVerifyKey() string {
 	if o == nil {
@@ -1004,6 +1040,30 @@ func (o *PrivateApplicationResponse) UnsetApproximateGuildCount() {
 	o.ApproximateGuildCount.Unset()
 }
 
+// GetExplicitContentFilter returns the ExplicitContentFilter field value
+func (o *PrivateApplicationResponse) GetExplicitContentFilter() ApplicationExplicitContentFilterTypes {
+	if o == nil {
+		var ret ApplicationExplicitContentFilterTypes
+		return ret
+	}
+
+	return o.ExplicitContentFilter
+}
+
+// GetExplicitContentFilterOk returns a tuple with the ExplicitContentFilter field value
+// and a boolean to check if the value has been set.
+func (o *PrivateApplicationResponse) GetExplicitContentFilterOk() (*ApplicationExplicitContentFilterTypes, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExplicitContentFilter, true
+}
+
+// SetExplicitContentFilter sets field value
+func (o *PrivateApplicationResponse) SetExplicitContentFilter(v ApplicationExplicitContentFilterTypes) {
+	o.ExplicitContentFilter = v
+}
+
 // GetTeam returns the Team field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PrivateApplicationResponse) GetTeam() TeamResponse {
 	if o == nil || IsNil(o.Team.Get()) {
@@ -1101,6 +1161,9 @@ func (o PrivateApplicationResponse) ToMap() (map[string]interface{}, error) {
 	if o.InstallParams.IsSet() {
 		toSerialize["install_params"] = o.InstallParams.Get()
 	}
+	if o.IntegrationTypesConfig != nil {
+		toSerialize["integration_types_config"] = o.IntegrationTypesConfig
+	}
 	toSerialize["verify_key"] = o.VerifyKey
 	toSerialize["flags"] = o.Flags
 	if o.MaxParticipants.IsSet() {
@@ -1120,6 +1183,7 @@ func (o PrivateApplicationResponse) ToMap() (map[string]interface{}, error) {
 	if o.ApproximateGuildCount.IsSet() {
 		toSerialize["approximate_guild_count"] = o.ApproximateGuildCount.Get()
 	}
+	toSerialize["explicit_content_filter"] = o.ExplicitContentFilter
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
 	}
@@ -1138,6 +1202,7 @@ func (o *PrivateApplicationResponse) UnmarshalJSON(data []byte) (err error) {
 		"flags",
 		"redirect_uris",
 		"owner",
+		"explicit_content_filter",
 	}
 
 	allProperties := make(map[string]interface{})

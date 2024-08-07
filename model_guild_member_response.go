@@ -23,7 +23,7 @@ var _ MappedNullable = &GuildMemberResponse{}
 // GuildMemberResponse struct for GuildMemberResponse
 type GuildMemberResponse struct {
 	Avatar NullableString `json:"avatar,omitempty"`
-	AvatarDecorationData map[string]interface{} `json:"avatar_decoration_data,omitempty"`
+	AvatarDecorationData NullableUserAvatarDecorationResponse `json:"avatar_decoration_data,omitempty"`
 	Banner NullableString `json:"banner,omitempty"`
 	CommunicationDisabledUntil NullableTime `json:"communication_disabled_until,omitempty"`
 	Flags int32 `json:"flags"`
@@ -105,36 +105,46 @@ func (o *GuildMemberResponse) UnsetAvatar() {
 	o.Avatar.Unset()
 }
 
-// GetAvatarDecorationData returns the AvatarDecorationData field value if set, zero value otherwise.
-func (o *GuildMemberResponse) GetAvatarDecorationData() map[string]interface{} {
-	if o == nil || IsNil(o.AvatarDecorationData) {
-		var ret map[string]interface{}
+// GetAvatarDecorationData returns the AvatarDecorationData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GuildMemberResponse) GetAvatarDecorationData() UserAvatarDecorationResponse {
+	if o == nil || IsNil(o.AvatarDecorationData.Get()) {
+		var ret UserAvatarDecorationResponse
 		return ret
 	}
-	return o.AvatarDecorationData
+	return *o.AvatarDecorationData.Get()
 }
 
 // GetAvatarDecorationDataOk returns a tuple with the AvatarDecorationData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GuildMemberResponse) GetAvatarDecorationDataOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.AvatarDecorationData) {
-		return map[string]interface{}{}, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GuildMemberResponse) GetAvatarDecorationDataOk() (*UserAvatarDecorationResponse, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return o.AvatarDecorationData, true
+	return o.AvatarDecorationData.Get(), o.AvatarDecorationData.IsSet()
 }
 
 // HasAvatarDecorationData returns a boolean if a field has been set.
 func (o *GuildMemberResponse) HasAvatarDecorationData() bool {
-	if o != nil && !IsNil(o.AvatarDecorationData) {
+	if o != nil && o.AvatarDecorationData.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAvatarDecorationData gets a reference to the given map[string]interface{} and assigns it to the AvatarDecorationData field.
-func (o *GuildMemberResponse) SetAvatarDecorationData(v map[string]interface{}) {
-	o.AvatarDecorationData = v
+// SetAvatarDecorationData gets a reference to the given NullableUserAvatarDecorationResponse and assigns it to the AvatarDecorationData field.
+func (o *GuildMemberResponse) SetAvatarDecorationData(v UserAvatarDecorationResponse) {
+	o.AvatarDecorationData.Set(&v)
+}
+// SetAvatarDecorationDataNil sets the value for AvatarDecorationData to be an explicit nil
+func (o *GuildMemberResponse) SetAvatarDecorationDataNil() {
+	o.AvatarDecorationData.Set(nil)
+}
+
+// UnsetAvatarDecorationData ensures that no value is present for AvatarDecorationData, not even an explicit nil
+func (o *GuildMemberResponse) UnsetAvatarDecorationData() {
+	o.AvatarDecorationData.Unset()
 }
 
 // GetBanner returns the Banner field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -486,8 +496,8 @@ func (o GuildMemberResponse) ToMap() (map[string]interface{}, error) {
 	if o.Avatar.IsSet() {
 		toSerialize["avatar"] = o.Avatar.Get()
 	}
-	if !IsNil(o.AvatarDecorationData) {
-		toSerialize["avatar_decoration_data"] = o.AvatarDecorationData
+	if o.AvatarDecorationData.IsSet() {
+		toSerialize["avatar_decoration_data"] = o.AvatarDecorationData.Get()
 	}
 	if o.Banner.IsSet() {
 		toSerialize["banner"] = o.Banner.Get()

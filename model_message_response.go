@@ -54,6 +54,9 @@ type MessageResponse struct {
 	RoleSubscriptionData NullableMessageRoleSubscriptionDataResponse `json:"role_subscription_data,omitempty"`
 	PurchaseNotification NullablePurchaseNotificationResponse `json:"purchase_notification,omitempty"`
 	Position NullableInt32 `json:"position,omitempty"`
+	Poll NullablePollResponse `json:"poll,omitempty"`
+	InteractionMetadata NullableBasicMessageResponseInteractionMetadata `json:"interaction_metadata,omitempty"`
+	MessageSnapshots []MessageSnapshotResponse `json:"message_snapshots,omitempty"`
 	Reactions []MessageReactionResponse `json:"reactions,omitempty"`
 	ReferencedMessage NullableBasicMessageResponse `json:"referenced_message,omitempty"`
 }
@@ -1109,6 +1112,123 @@ func (o *MessageResponse) UnsetPosition() {
 	o.Position.Unset()
 }
 
+// GetPoll returns the Poll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageResponse) GetPoll() PollResponse {
+	if o == nil || IsNil(o.Poll.Get()) {
+		var ret PollResponse
+		return ret
+	}
+	return *o.Poll.Get()
+}
+
+// GetPollOk returns a tuple with the Poll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageResponse) GetPollOk() (*PollResponse, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Poll.Get(), o.Poll.IsSet()
+}
+
+// HasPoll returns a boolean if a field has been set.
+func (o *MessageResponse) HasPoll() bool {
+	if o != nil && o.Poll.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPoll gets a reference to the given NullablePollResponse and assigns it to the Poll field.
+func (o *MessageResponse) SetPoll(v PollResponse) {
+	o.Poll.Set(&v)
+}
+// SetPollNil sets the value for Poll to be an explicit nil
+func (o *MessageResponse) SetPollNil() {
+	o.Poll.Set(nil)
+}
+
+// UnsetPoll ensures that no value is present for Poll, not even an explicit nil
+func (o *MessageResponse) UnsetPoll() {
+	o.Poll.Unset()
+}
+
+// GetInteractionMetadata returns the InteractionMetadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageResponse) GetInteractionMetadata() BasicMessageResponseInteractionMetadata {
+	if o == nil || IsNil(o.InteractionMetadata.Get()) {
+		var ret BasicMessageResponseInteractionMetadata
+		return ret
+	}
+	return *o.InteractionMetadata.Get()
+}
+
+// GetInteractionMetadataOk returns a tuple with the InteractionMetadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageResponse) GetInteractionMetadataOk() (*BasicMessageResponseInteractionMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.InteractionMetadata.Get(), o.InteractionMetadata.IsSet()
+}
+
+// HasInteractionMetadata returns a boolean if a field has been set.
+func (o *MessageResponse) HasInteractionMetadata() bool {
+	if o != nil && o.InteractionMetadata.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetInteractionMetadata gets a reference to the given NullableBasicMessageResponseInteractionMetadata and assigns it to the InteractionMetadata field.
+func (o *MessageResponse) SetInteractionMetadata(v BasicMessageResponseInteractionMetadata) {
+	o.InteractionMetadata.Set(&v)
+}
+// SetInteractionMetadataNil sets the value for InteractionMetadata to be an explicit nil
+func (o *MessageResponse) SetInteractionMetadataNil() {
+	o.InteractionMetadata.Set(nil)
+}
+
+// UnsetInteractionMetadata ensures that no value is present for InteractionMetadata, not even an explicit nil
+func (o *MessageResponse) UnsetInteractionMetadata() {
+	o.InteractionMetadata.Unset()
+}
+
+// GetMessageSnapshots returns the MessageSnapshots field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageResponse) GetMessageSnapshots() []MessageSnapshotResponse {
+	if o == nil {
+		var ret []MessageSnapshotResponse
+		return ret
+	}
+	return o.MessageSnapshots
+}
+
+// GetMessageSnapshotsOk returns a tuple with the MessageSnapshots field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageResponse) GetMessageSnapshotsOk() ([]MessageSnapshotResponse, bool) {
+	if o == nil || IsNil(o.MessageSnapshots) {
+		return nil, false
+	}
+	return o.MessageSnapshots, true
+}
+
+// HasMessageSnapshots returns a boolean if a field has been set.
+func (o *MessageResponse) HasMessageSnapshots() bool {
+	if o != nil && !IsNil(o.MessageSnapshots) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessageSnapshots gets a reference to the given []MessageSnapshotResponse and assigns it to the MessageSnapshots field.
+func (o *MessageResponse) SetMessageSnapshots(v []MessageSnapshotResponse) {
+	o.MessageSnapshots = v
+}
+
 // GetReactions returns the Reactions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MessageResponse) GetReactions() []MessageReactionResponse {
 	if o == nil {
@@ -1259,6 +1379,15 @@ func (o MessageResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Position.IsSet() {
 		toSerialize["position"] = o.Position.Get()
+	}
+	if o.Poll.IsSet() {
+		toSerialize["poll"] = o.Poll.Get()
+	}
+	if o.InteractionMetadata.IsSet() {
+		toSerialize["interaction_metadata"] = o.InteractionMetadata.Get()
+	}
+	if o.MessageSnapshots != nil {
+		toSerialize["message_snapshots"] = o.MessageSnapshots
 	}
 	if o.Reactions != nil {
 		toSerialize["reactions"] = o.Reactions

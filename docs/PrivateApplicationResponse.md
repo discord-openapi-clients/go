@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **PrivacyPolicyUrl** | Pointer to **NullableString** |  | [optional] 
 **CustomInstallUrl** | Pointer to **NullableString** |  | [optional] 
 **InstallParams** | Pointer to [**NullableApplicationOAuth2InstallParamsResponse**](ApplicationOAuth2InstallParamsResponse.md) |  | [optional] 
+**IntegrationTypesConfig** | Pointer to [**map[string]ApplicationIntegrationTypeConfigurationResponse**](ApplicationIntegrationTypeConfigurationResponse.md) |  | [optional] 
 **VerifyKey** | **string** |  | 
 **Flags** | **int32** |  | 
 **MaxParticipants** | Pointer to **NullableInt32** |  | [optional] 
@@ -30,13 +31,14 @@ Name | Type | Description | Notes
 **RoleConnectionsVerificationUrl** | Pointer to **NullableString** |  | [optional] 
 **Owner** | [**UserResponse**](UserResponse.md) |  | 
 **ApproximateGuildCount** | Pointer to **NullableInt32** |  | [optional] 
+**ExplicitContentFilter** | [**ApplicationExplicitContentFilterTypes**](ApplicationExplicitContentFilterTypes.md) |  | 
 **Team** | Pointer to [**NullableTeamResponse**](TeamResponse.md) |  | [optional] 
 
 ## Methods
 
 ### NewPrivateApplicationResponse
 
-`func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse, ) *PrivateApplicationResponse`
+`func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse, explicitContentFilter ApplicationExplicitContentFilterTypes, ) *PrivateApplicationResponse`
 
 NewPrivateApplicationResponse instantiates a new PrivateApplicationResponse object
 This constructor will assign default values to properties that have it defined,
@@ -581,6 +583,41 @@ HasInstallParams returns a boolean if a field has been set.
 `func (o *PrivateApplicationResponse) UnsetInstallParams()`
 
 UnsetInstallParams ensures that no value is present for InstallParams, not even an explicit nil
+### GetIntegrationTypesConfig
+
+`func (o *PrivateApplicationResponse) GetIntegrationTypesConfig() map[string]ApplicationIntegrationTypeConfigurationResponse`
+
+GetIntegrationTypesConfig returns the IntegrationTypesConfig field if non-nil, zero value otherwise.
+
+### GetIntegrationTypesConfigOk
+
+`func (o *PrivateApplicationResponse) GetIntegrationTypesConfigOk() (*map[string]ApplicationIntegrationTypeConfigurationResponse, bool)`
+
+GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationTypesConfig
+
+`func (o *PrivateApplicationResponse) SetIntegrationTypesConfig(v map[string]ApplicationIntegrationTypeConfigurationResponse)`
+
+SetIntegrationTypesConfig sets IntegrationTypesConfig field to given value.
+
+### HasIntegrationTypesConfig
+
+`func (o *PrivateApplicationResponse) HasIntegrationTypesConfig() bool`
+
+HasIntegrationTypesConfig returns a boolean if a field has been set.
+
+### SetIntegrationTypesConfigNil
+
+`func (o *PrivateApplicationResponse) SetIntegrationTypesConfigNil(b bool)`
+
+ SetIntegrationTypesConfigNil sets the value for IntegrationTypesConfig to be an explicit nil
+
+### UnsetIntegrationTypesConfig
+`func (o *PrivateApplicationResponse) UnsetIntegrationTypesConfig()`
+
+UnsetIntegrationTypesConfig ensures that no value is present for IntegrationTypesConfig, not even an explicit nil
 ### GetVerifyKey
 
 `func (o *PrivateApplicationResponse) GetVerifyKey() string`
@@ -836,6 +873,26 @@ HasApproximateGuildCount returns a boolean if a field has been set.
 `func (o *PrivateApplicationResponse) UnsetApproximateGuildCount()`
 
 UnsetApproximateGuildCount ensures that no value is present for ApproximateGuildCount, not even an explicit nil
+### GetExplicitContentFilter
+
+`func (o *PrivateApplicationResponse) GetExplicitContentFilter() ApplicationExplicitContentFilterTypes`
+
+GetExplicitContentFilter returns the ExplicitContentFilter field if non-nil, zero value otherwise.
+
+### GetExplicitContentFilterOk
+
+`func (o *PrivateApplicationResponse) GetExplicitContentFilterOk() (*ApplicationExplicitContentFilterTypes, bool)`
+
+GetExplicitContentFilterOk returns a tuple with the ExplicitContentFilter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExplicitContentFilter
+
+`func (o *PrivateApplicationResponse) SetExplicitContentFilter(v ApplicationExplicitContentFilterTypes)`
+
+SetExplicitContentFilter sets ExplicitContentFilter field to given value.
+
+
 ### GetTeam
 
 `func (o *PrivateApplicationResponse) GetTeam() TeamResponse`

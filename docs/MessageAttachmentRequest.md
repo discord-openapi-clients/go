@@ -7,6 +7,9 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Filename** | Pointer to **NullableString** |  | [optional] 
 **Description** | Pointer to **NullableString** |  | [optional] 
+**DurationSecs** | Pointer to **NullableFloat64** |  | [optional] 
+**Waveform** | Pointer to **NullableString** |  | [optional] 
+**Title** | Pointer to **NullableString** |  | [optional] 
 **IsRemix** | Pointer to **NullableBool** |  | [optional] 
 
 ## Methods
@@ -118,6 +121,111 @@ HasDescription returns a boolean if a field has been set.
 `func (o *MessageAttachmentRequest) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+### GetDurationSecs
+
+`func (o *MessageAttachmentRequest) GetDurationSecs() float64`
+
+GetDurationSecs returns the DurationSecs field if non-nil, zero value otherwise.
+
+### GetDurationSecsOk
+
+`func (o *MessageAttachmentRequest) GetDurationSecsOk() (*float64, bool)`
+
+GetDurationSecsOk returns a tuple with the DurationSecs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDurationSecs
+
+`func (o *MessageAttachmentRequest) SetDurationSecs(v float64)`
+
+SetDurationSecs sets DurationSecs field to given value.
+
+### HasDurationSecs
+
+`func (o *MessageAttachmentRequest) HasDurationSecs() bool`
+
+HasDurationSecs returns a boolean if a field has been set.
+
+### SetDurationSecsNil
+
+`func (o *MessageAttachmentRequest) SetDurationSecsNil(b bool)`
+
+ SetDurationSecsNil sets the value for DurationSecs to be an explicit nil
+
+### UnsetDurationSecs
+`func (o *MessageAttachmentRequest) UnsetDurationSecs()`
+
+UnsetDurationSecs ensures that no value is present for DurationSecs, not even an explicit nil
+### GetWaveform
+
+`func (o *MessageAttachmentRequest) GetWaveform() string`
+
+GetWaveform returns the Waveform field if non-nil, zero value otherwise.
+
+### GetWaveformOk
+
+`func (o *MessageAttachmentRequest) GetWaveformOk() (*string, bool)`
+
+GetWaveformOk returns a tuple with the Waveform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWaveform
+
+`func (o *MessageAttachmentRequest) SetWaveform(v string)`
+
+SetWaveform sets Waveform field to given value.
+
+### HasWaveform
+
+`func (o *MessageAttachmentRequest) HasWaveform() bool`
+
+HasWaveform returns a boolean if a field has been set.
+
+### SetWaveformNil
+
+`func (o *MessageAttachmentRequest) SetWaveformNil(b bool)`
+
+ SetWaveformNil sets the value for Waveform to be an explicit nil
+
+### UnsetWaveform
+`func (o *MessageAttachmentRequest) UnsetWaveform()`
+
+UnsetWaveform ensures that no value is present for Waveform, not even an explicit nil
+### GetTitle
+
+`func (o *MessageAttachmentRequest) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *MessageAttachmentRequest) GetTitleOk() (*string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTitle
+
+`func (o *MessageAttachmentRequest) SetTitle(v string)`
+
+SetTitle sets Title field to given value.
+
+### HasTitle
+
+`func (o *MessageAttachmentRequest) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitleNil
+
+`func (o *MessageAttachmentRequest) SetTitleNil(b bool)`
+
+ SetTitleNil sets the value for Title to be an explicit nil
+
+### UnsetTitle
+`func (o *MessageAttachmentRequest) UnsetTitle()`
+
+UnsetTitle ensures that no value is present for Title, not even an explicit nil
 ### GetIsRemix
 
 `func (o *MessageAttachmentRequest) GetIsRemix() bool`

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **MinValues** | Pointer to **NullableInt32** |  | [optional] 
 **MaxValues** | Pointer to **NullableInt32** |  | [optional] 
 **ChannelTypes** | Pointer to [**[]ChannelTypes**](ChannelTypes.md) |  | [optional] 
+**DefaultValues** | Pointer to [**[]UserSelectDefaultValueResponse**](UserSelectDefaultValueResponse.md) |  | [optional] 
 **Value** | Pointer to **NullableString** |  | [optional] 
 **Required** | Pointer to **NullableBool** |  | [optional] 
 **MinLength** | Pointer to **NullableInt32** |  | [optional] 
@@ -453,6 +454,41 @@ HasChannelTypes returns a boolean if a field has been set.
 `func (o *BasicMessageResponseComponentsInner) UnsetChannelTypes()`
 
 UnsetChannelTypes ensures that no value is present for ChannelTypes, not even an explicit nil
+### GetDefaultValues
+
+`func (o *BasicMessageResponseComponentsInner) GetDefaultValues() []UserSelectDefaultValueResponse`
+
+GetDefaultValues returns the DefaultValues field if non-nil, zero value otherwise.
+
+### GetDefaultValuesOk
+
+`func (o *BasicMessageResponseComponentsInner) GetDefaultValuesOk() (*[]UserSelectDefaultValueResponse, bool)`
+
+GetDefaultValuesOk returns a tuple with the DefaultValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValues
+
+`func (o *BasicMessageResponseComponentsInner) SetDefaultValues(v []UserSelectDefaultValueResponse)`
+
+SetDefaultValues sets DefaultValues field to given value.
+
+### HasDefaultValues
+
+`func (o *BasicMessageResponseComponentsInner) HasDefaultValues() bool`
+
+HasDefaultValues returns a boolean if a field has been set.
+
+### SetDefaultValuesNil
+
+`func (o *BasicMessageResponseComponentsInner) SetDefaultValuesNil(b bool)`
+
+ SetDefaultValuesNil sets the value for DefaultValues to be an explicit nil
+
+### UnsetDefaultValues
+`func (o *BasicMessageResponseComponentsInner) UnsetDefaultValues()`
+
+UnsetDefaultValues ensures that no value is present for DefaultValues, not even an explicit nil
 ### GetValue
 
 `func (o *BasicMessageResponseComponentsInner) GetValue() string`

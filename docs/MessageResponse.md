@@ -36,6 +36,9 @@ Name | Type | Description | Notes
 **RoleSubscriptionData** | Pointer to [**NullableMessageRoleSubscriptionDataResponse**](MessageRoleSubscriptionDataResponse.md) |  | [optional] 
 **PurchaseNotification** | Pointer to [**NullablePurchaseNotificationResponse**](PurchaseNotificationResponse.md) |  | [optional] 
 **Position** | Pointer to **NullableInt32** |  | [optional] 
+**Poll** | Pointer to [**NullablePollResponse**](PollResponse.md) |  | [optional] 
+**InteractionMetadata** | Pointer to [**NullableBasicMessageResponseInteractionMetadata**](BasicMessageResponseInteractionMetadata.md) |  | [optional] 
+**MessageSnapshots** | Pointer to [**[]MessageSnapshotResponse**](MessageSnapshotResponse.md) |  | [optional] 
 **Reactions** | Pointer to [**[]MessageReactionResponse**](MessageReactionResponse.md) |  | [optional] 
 **ReferencedMessage** | Pointer to [**NullableBasicMessageResponse**](BasicMessageResponse.md) |  | [optional] 
 
@@ -923,6 +926,111 @@ HasPosition returns a boolean if a field has been set.
 `func (o *MessageResponse) UnsetPosition()`
 
 UnsetPosition ensures that no value is present for Position, not even an explicit nil
+### GetPoll
+
+`func (o *MessageResponse) GetPoll() PollResponse`
+
+GetPoll returns the Poll field if non-nil, zero value otherwise.
+
+### GetPollOk
+
+`func (o *MessageResponse) GetPollOk() (*PollResponse, bool)`
+
+GetPollOk returns a tuple with the Poll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoll
+
+`func (o *MessageResponse) SetPoll(v PollResponse)`
+
+SetPoll sets Poll field to given value.
+
+### HasPoll
+
+`func (o *MessageResponse) HasPoll() bool`
+
+HasPoll returns a boolean if a field has been set.
+
+### SetPollNil
+
+`func (o *MessageResponse) SetPollNil(b bool)`
+
+ SetPollNil sets the value for Poll to be an explicit nil
+
+### UnsetPoll
+`func (o *MessageResponse) UnsetPoll()`
+
+UnsetPoll ensures that no value is present for Poll, not even an explicit nil
+### GetInteractionMetadata
+
+`func (o *MessageResponse) GetInteractionMetadata() BasicMessageResponseInteractionMetadata`
+
+GetInteractionMetadata returns the InteractionMetadata field if non-nil, zero value otherwise.
+
+### GetInteractionMetadataOk
+
+`func (o *MessageResponse) GetInteractionMetadataOk() (*BasicMessageResponseInteractionMetadata, bool)`
+
+GetInteractionMetadataOk returns a tuple with the InteractionMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInteractionMetadata
+
+`func (o *MessageResponse) SetInteractionMetadata(v BasicMessageResponseInteractionMetadata)`
+
+SetInteractionMetadata sets InteractionMetadata field to given value.
+
+### HasInteractionMetadata
+
+`func (o *MessageResponse) HasInteractionMetadata() bool`
+
+HasInteractionMetadata returns a boolean if a field has been set.
+
+### SetInteractionMetadataNil
+
+`func (o *MessageResponse) SetInteractionMetadataNil(b bool)`
+
+ SetInteractionMetadataNil sets the value for InteractionMetadata to be an explicit nil
+
+### UnsetInteractionMetadata
+`func (o *MessageResponse) UnsetInteractionMetadata()`
+
+UnsetInteractionMetadata ensures that no value is present for InteractionMetadata, not even an explicit nil
+### GetMessageSnapshots
+
+`func (o *MessageResponse) GetMessageSnapshots() []MessageSnapshotResponse`
+
+GetMessageSnapshots returns the MessageSnapshots field if non-nil, zero value otherwise.
+
+### GetMessageSnapshotsOk
+
+`func (o *MessageResponse) GetMessageSnapshotsOk() (*[]MessageSnapshotResponse, bool)`
+
+GetMessageSnapshotsOk returns a tuple with the MessageSnapshots field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessageSnapshots
+
+`func (o *MessageResponse) SetMessageSnapshots(v []MessageSnapshotResponse)`
+
+SetMessageSnapshots sets MessageSnapshots field to given value.
+
+### HasMessageSnapshots
+
+`func (o *MessageResponse) HasMessageSnapshots() bool`
+
+HasMessageSnapshots returns a boolean if a field has been set.
+
+### SetMessageSnapshotsNil
+
+`func (o *MessageResponse) SetMessageSnapshotsNil(b bool)`
+
+ SetMessageSnapshotsNil sets the value for MessageSnapshots to be an explicit nil
+
+### UnsetMessageSnapshots
+`func (o *MessageResponse) UnsetMessageSnapshots()`
+
+UnsetMessageSnapshots ensures that no value is present for MessageSnapshots, not even an explicit nil
 ### GetReactions
 
 `func (o *MessageResponse) GetReactions() []MessageReactionResponse`

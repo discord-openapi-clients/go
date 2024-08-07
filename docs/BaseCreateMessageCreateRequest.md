@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Components** | Pointer to [**[]ActionRow**](ActionRow.md) |  | [optional] 
 **Flags** | Pointer to **NullableInt32** |  | [optional] 
 **Attachments** | Pointer to [**[]MessageAttachmentRequest**](MessageAttachmentRequest.md) |  | [optional] 
+**Poll** | Pointer to [**NullablePollCreateRequest**](PollCreateRequest.md) |  | [optional] 
 
 ## Methods
 
@@ -276,6 +277,41 @@ HasAttachments returns a boolean if a field has been set.
 `func (o *BaseCreateMessageCreateRequest) UnsetAttachments()`
 
 UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
+### GetPoll
+
+`func (o *BaseCreateMessageCreateRequest) GetPoll() PollCreateRequest`
+
+GetPoll returns the Poll field if non-nil, zero value otherwise.
+
+### GetPollOk
+
+`func (o *BaseCreateMessageCreateRequest) GetPollOk() (*PollCreateRequest, bool)`
+
+GetPollOk returns a tuple with the Poll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoll
+
+`func (o *BaseCreateMessageCreateRequest) SetPoll(v PollCreateRequest)`
+
+SetPoll sets Poll field to given value.
+
+### HasPoll
+
+`func (o *BaseCreateMessageCreateRequest) HasPoll() bool`
+
+HasPoll returns a boolean if a field has been set.
+
+### SetPollNil
+
+`func (o *BaseCreateMessageCreateRequest) SetPollNil(b bool)`
+
+ SetPollNil sets the value for Poll to be an explicit nil
+
+### UnsetPoll
+`func (o *BaseCreateMessageCreateRequest) UnsetPoll()`
+
+UnsetPoll ensures that no value is present for Poll, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

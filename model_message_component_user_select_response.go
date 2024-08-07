@@ -28,6 +28,7 @@ type MessageComponentUserSelectResponse struct {
 	MinValues NullableInt32 `json:"min_values,omitempty"`
 	MaxValues NullableInt32 `json:"max_values,omitempty"`
 	Disabled NullableBool `json:"disabled,omitempty"`
+	DefaultValues []UserSelectDefaultValueResponse `json:"default_values,omitempty"`
 }
 
 type _MessageComponentUserSelectResponse MessageComponentUserSelectResponse
@@ -292,6 +293,39 @@ func (o *MessageComponentUserSelectResponse) UnsetDisabled() {
 	o.Disabled.Unset()
 }
 
+// GetDefaultValues returns the DefaultValues field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageComponentUserSelectResponse) GetDefaultValues() []UserSelectDefaultValueResponse {
+	if o == nil {
+		var ret []UserSelectDefaultValueResponse
+		return ret
+	}
+	return o.DefaultValues
+}
+
+// GetDefaultValuesOk returns a tuple with the DefaultValues field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageComponentUserSelectResponse) GetDefaultValuesOk() ([]UserSelectDefaultValueResponse, bool) {
+	if o == nil || IsNil(o.DefaultValues) {
+		return nil, false
+	}
+	return o.DefaultValues, true
+}
+
+// HasDefaultValues returns a boolean if a field has been set.
+func (o *MessageComponentUserSelectResponse) HasDefaultValues() bool {
+	if o != nil && !IsNil(o.DefaultValues) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultValues gets a reference to the given []UserSelectDefaultValueResponse and assigns it to the DefaultValues field.
+func (o *MessageComponentUserSelectResponse) SetDefaultValues(v []UserSelectDefaultValueResponse) {
+	o.DefaultValues = v
+}
+
 func (o MessageComponentUserSelectResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -316,6 +350,9 @@ func (o MessageComponentUserSelectResponse) ToMap() (map[string]interface{}, err
 	}
 	if o.Disabled.IsSet() {
 		toSerialize["disabled"] = o.Disabled.Get()
+	}
+	if o.DefaultValues != nil {
+		toSerialize["default_values"] = o.DefaultValues
 	}
 	return toSerialize, nil
 }
