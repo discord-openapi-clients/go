@@ -24,6 +24,7 @@ type IncomingWebhookUpdateRequestPartial struct {
 	AllowedMentions NullableMessageAllowedMentionsRequest `json:"allowed_mentions,omitempty"`
 	Components []ActionRow `json:"components,omitempty"`
 	Attachments []MessageAttachmentRequest `json:"attachments,omitempty"`
+	Poll NullablePollCreateRequest `json:"poll,omitempty"`
 	Flags NullableInt32 `json:"flags,omitempty"`
 }
 
@@ -227,6 +228,48 @@ func (o *IncomingWebhookUpdateRequestPartial) SetAttachments(v []MessageAttachme
 	o.Attachments = v
 }
 
+// GetPoll returns the Poll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IncomingWebhookUpdateRequestPartial) GetPoll() PollCreateRequest {
+	if o == nil || IsNil(o.Poll.Get()) {
+		var ret PollCreateRequest
+		return ret
+	}
+	return *o.Poll.Get()
+}
+
+// GetPollOk returns a tuple with the Poll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IncomingWebhookUpdateRequestPartial) GetPollOk() (*PollCreateRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Poll.Get(), o.Poll.IsSet()
+}
+
+// HasPoll returns a boolean if a field has been set.
+func (o *IncomingWebhookUpdateRequestPartial) HasPoll() bool {
+	if o != nil && o.Poll.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPoll gets a reference to the given NullablePollCreateRequest and assigns it to the Poll field.
+func (o *IncomingWebhookUpdateRequestPartial) SetPoll(v PollCreateRequest) {
+	o.Poll.Set(&v)
+}
+// SetPollNil sets the value for Poll to be an explicit nil
+func (o *IncomingWebhookUpdateRequestPartial) SetPollNil() {
+	o.Poll.Set(nil)
+}
+
+// UnsetPoll ensures that no value is present for Poll, not even an explicit nil
+func (o *IncomingWebhookUpdateRequestPartial) UnsetPoll() {
+	o.Poll.Unset()
+}
+
 // GetFlags returns the Flags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncomingWebhookUpdateRequestPartial) GetFlags() int32 {
 	if o == nil || IsNil(o.Flags.Get()) {
@@ -293,6 +336,9 @@ func (o IncomingWebhookUpdateRequestPartial) ToMap() (map[string]interface{}, er
 	}
 	if o.Attachments != nil {
 		toSerialize["attachments"] = o.Attachments
+	}
+	if o.Poll.IsSet() {
+		toSerialize["poll"] = o.Poll.Get()
 	}
 	if o.Flags.IsSet() {
 		toSerialize["flags"] = o.Flags.Get()

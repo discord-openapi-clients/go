@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **MinValues** | Pointer to **NullableInt32** |  | [optional] 
 **MaxValues** | Pointer to **NullableInt32** |  | [optional] 
 **ChannelTypes** | Pointer to [**[]ChannelTypes**](ChannelTypes.md) |  | [optional] 
+**DefaultValues** | Pointer to [**[]UserSelectDefaultValueResponse**](UserSelectDefaultValueResponse.md) |  | [optional] 
 **Value** | Pointer to **NullableString** |  | [optional] 
 **Required** | Pointer to **NullableBool** |  | [optional] 
 **MinLength** | Pointer to **NullableInt32** |  | [optional] 
@@ -417,6 +418,41 @@ HasChannelTypes returns a boolean if a field has been set.
 `func (o *MessageComponentActionRowResponseComponentsInner) UnsetChannelTypes()`
 
 UnsetChannelTypes ensures that no value is present for ChannelTypes, not even an explicit nil
+### GetDefaultValues
+
+`func (o *MessageComponentActionRowResponseComponentsInner) GetDefaultValues() []UserSelectDefaultValueResponse`
+
+GetDefaultValues returns the DefaultValues field if non-nil, zero value otherwise.
+
+### GetDefaultValuesOk
+
+`func (o *MessageComponentActionRowResponseComponentsInner) GetDefaultValuesOk() (*[]UserSelectDefaultValueResponse, bool)`
+
+GetDefaultValuesOk returns a tuple with the DefaultValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValues
+
+`func (o *MessageComponentActionRowResponseComponentsInner) SetDefaultValues(v []UserSelectDefaultValueResponse)`
+
+SetDefaultValues sets DefaultValues field to given value.
+
+### HasDefaultValues
+
+`func (o *MessageComponentActionRowResponseComponentsInner) HasDefaultValues() bool`
+
+HasDefaultValues returns a boolean if a field has been set.
+
+### SetDefaultValuesNil
+
+`func (o *MessageComponentActionRowResponseComponentsInner) SetDefaultValuesNil(b bool)`
+
+ SetDefaultValuesNil sets the value for DefaultValues to be an explicit nil
+
+### UnsetDefaultValues
+`func (o *MessageComponentActionRowResponseComponentsInner) UnsetDefaultValues()`
+
+UnsetDefaultValues ensures that no value is present for DefaultValues, not even an explicit nil
 ### GetValue
 
 `func (o *MessageComponentActionRowResponseComponentsInner) GetValue() string`

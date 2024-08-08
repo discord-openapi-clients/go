@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **MinValues** | Pointer to **NullableInt32** |  | [optional] 
 **MaxValues** | Pointer to **NullableInt32** |  | [optional] 
 **Disabled** | Pointer to **NullableBool** |  | [optional] 
+**DefaultValues** | Pointer to [**[]UserSelectDefaultValueResponse**](UserSelectDefaultValueResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -231,6 +232,41 @@ HasDisabled returns a boolean if a field has been set.
 `func (o *MessageComponentUserSelectResponse) UnsetDisabled()`
 
 UnsetDisabled ensures that no value is present for Disabled, not even an explicit nil
+### GetDefaultValues
+
+`func (o *MessageComponentUserSelectResponse) GetDefaultValues() []UserSelectDefaultValueResponse`
+
+GetDefaultValues returns the DefaultValues field if non-nil, zero value otherwise.
+
+### GetDefaultValuesOk
+
+`func (o *MessageComponentUserSelectResponse) GetDefaultValuesOk() (*[]UserSelectDefaultValueResponse, bool)`
+
+GetDefaultValuesOk returns a tuple with the DefaultValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValues
+
+`func (o *MessageComponentUserSelectResponse) SetDefaultValues(v []UserSelectDefaultValueResponse)`
+
+SetDefaultValues sets DefaultValues field to given value.
+
+### HasDefaultValues
+
+`func (o *MessageComponentUserSelectResponse) HasDefaultValues() bool`
+
+HasDefaultValues returns a boolean if a field has been set.
+
+### SetDefaultValuesNil
+
+`func (o *MessageComponentUserSelectResponse) SetDefaultValuesNil(b bool)`
+
+ SetDefaultValuesNil sets the value for DefaultValues to be an explicit nil
+
+### UnsetDefaultValues
+`func (o *MessageComponentUserSelectResponse) UnsetDefaultValues()`
+
+UnsetDefaultValues ensures that no value is present for DefaultValues, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

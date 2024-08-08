@@ -25,12 +25,14 @@ type ApplicationFormPartial struct {
 	TeamId *string `json:"team_id,omitempty" validate:"regexp=^(0|[1-9][0-9]*)$"`
 	Flags NullableInt32 `json:"flags,omitempty"`
 	InteractionsEndpointUrl NullableString `json:"interactions_endpoint_url,omitempty"`
+	ExplicitContentFilter NullableApplicationExplicitContentFilterTypes `json:"explicit_content_filter,omitempty"`
 	MaxParticipants NullableInt32 `json:"max_participants,omitempty"`
 	Type NullableApplicationTypes `json:"type,omitempty"`
 	Tags []string `json:"tags,omitempty"`
 	CustomInstallUrl NullableString `json:"custom_install_url,omitempty"`
 	InstallParams NullableApplicationOAuth2InstallParams `json:"install_params,omitempty"`
 	RoleConnectionsVerificationUrl NullableString `json:"role_connections_verification_url,omitempty"`
+	IntegrationTypesConfig map[string]ApplicationFormPartialIntegrationTypesConfigValue `json:"integration_types_config,omitempty"`
 }
 
 // NewApplicationFormPartial instantiates a new ApplicationFormPartial object
@@ -292,6 +294,48 @@ func (o *ApplicationFormPartial) UnsetInteractionsEndpointUrl() {
 	o.InteractionsEndpointUrl.Unset()
 }
 
+// GetExplicitContentFilter returns the ExplicitContentFilter field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationFormPartial) GetExplicitContentFilter() ApplicationExplicitContentFilterTypes {
+	if o == nil || IsNil(o.ExplicitContentFilter.Get()) {
+		var ret ApplicationExplicitContentFilterTypes
+		return ret
+	}
+	return *o.ExplicitContentFilter.Get()
+}
+
+// GetExplicitContentFilterOk returns a tuple with the ExplicitContentFilter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationFormPartial) GetExplicitContentFilterOk() (*ApplicationExplicitContentFilterTypes, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExplicitContentFilter.Get(), o.ExplicitContentFilter.IsSet()
+}
+
+// HasExplicitContentFilter returns a boolean if a field has been set.
+func (o *ApplicationFormPartial) HasExplicitContentFilter() bool {
+	if o != nil && o.ExplicitContentFilter.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExplicitContentFilter gets a reference to the given NullableApplicationExplicitContentFilterTypes and assigns it to the ExplicitContentFilter field.
+func (o *ApplicationFormPartial) SetExplicitContentFilter(v ApplicationExplicitContentFilterTypes) {
+	o.ExplicitContentFilter.Set(&v)
+}
+// SetExplicitContentFilterNil sets the value for ExplicitContentFilter to be an explicit nil
+func (o *ApplicationFormPartial) SetExplicitContentFilterNil() {
+	o.ExplicitContentFilter.Set(nil)
+}
+
+// UnsetExplicitContentFilter ensures that no value is present for ExplicitContentFilter, not even an explicit nil
+func (o *ApplicationFormPartial) UnsetExplicitContentFilter() {
+	o.ExplicitContentFilter.Unset()
+}
+
 // GetMaxParticipants returns the MaxParticipants field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationFormPartial) GetMaxParticipants() int32 {
 	if o == nil || IsNil(o.MaxParticipants.Get()) {
@@ -535,6 +579,39 @@ func (o *ApplicationFormPartial) UnsetRoleConnectionsVerificationUrl() {
 	o.RoleConnectionsVerificationUrl.Unset()
 }
 
+// GetIntegrationTypesConfig returns the IntegrationTypesConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationFormPartial) GetIntegrationTypesConfig() map[string]ApplicationFormPartialIntegrationTypesConfigValue {
+	if o == nil {
+		var ret map[string]ApplicationFormPartialIntegrationTypesConfigValue
+		return ret
+	}
+	return o.IntegrationTypesConfig
+}
+
+// GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationFormPartial) GetIntegrationTypesConfigOk() (*map[string]ApplicationFormPartialIntegrationTypesConfigValue, bool) {
+	if o == nil || IsNil(o.IntegrationTypesConfig) {
+		return nil, false
+	}
+	return &o.IntegrationTypesConfig, true
+}
+
+// HasIntegrationTypesConfig returns a boolean if a field has been set.
+func (o *ApplicationFormPartial) HasIntegrationTypesConfig() bool {
+	if o != nil && !IsNil(o.IntegrationTypesConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationTypesConfig gets a reference to the given map[string]ApplicationFormPartialIntegrationTypesConfigValue and assigns it to the IntegrationTypesConfig field.
+func (o *ApplicationFormPartial) SetIntegrationTypesConfig(v map[string]ApplicationFormPartialIntegrationTypesConfigValue) {
+	o.IntegrationTypesConfig = v
+}
+
 func (o ApplicationFormPartial) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -563,6 +640,9 @@ func (o ApplicationFormPartial) ToMap() (map[string]interface{}, error) {
 	if o.InteractionsEndpointUrl.IsSet() {
 		toSerialize["interactions_endpoint_url"] = o.InteractionsEndpointUrl.Get()
 	}
+	if o.ExplicitContentFilter.IsSet() {
+		toSerialize["explicit_content_filter"] = o.ExplicitContentFilter.Get()
+	}
 	if o.MaxParticipants.IsSet() {
 		toSerialize["max_participants"] = o.MaxParticipants.Get()
 	}
@@ -580,6 +660,9 @@ func (o ApplicationFormPartial) ToMap() (map[string]interface{}, error) {
 	}
 	if o.RoleConnectionsVerificationUrl.IsSet() {
 		toSerialize["role_connections_verification_url"] = o.RoleConnectionsVerificationUrl.Get()
+	}
+	if o.IntegrationTypesConfig != nil {
+		toSerialize["integration_types_config"] = o.IntegrationTypesConfig
 	}
 	return toSerialize, nil
 }

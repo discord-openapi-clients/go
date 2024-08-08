@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **MaxValues** | Pointer to **NullableInt32** |  | [optional] 
 **Disabled** | Pointer to **NullableBool** |  | [optional] 
 **ChannelTypes** | Pointer to [**[]ChannelTypes**](ChannelTypes.md) |  | [optional] 
+**DefaultValues** | Pointer to [**[]ChannelSelectDefaultValueResponse**](ChannelSelectDefaultValueResponse.md) |  | [optional] 
 
 ## Methods
 
@@ -267,6 +268,41 @@ HasChannelTypes returns a boolean if a field has been set.
 `func (o *MessageComponentChannelSelectResponse) UnsetChannelTypes()`
 
 UnsetChannelTypes ensures that no value is present for ChannelTypes, not even an explicit nil
+### GetDefaultValues
+
+`func (o *MessageComponentChannelSelectResponse) GetDefaultValues() []ChannelSelectDefaultValueResponse`
+
+GetDefaultValues returns the DefaultValues field if non-nil, zero value otherwise.
+
+### GetDefaultValuesOk
+
+`func (o *MessageComponentChannelSelectResponse) GetDefaultValuesOk() (*[]ChannelSelectDefaultValueResponse, bool)`
+
+GetDefaultValuesOk returns a tuple with the DefaultValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefaultValues
+
+`func (o *MessageComponentChannelSelectResponse) SetDefaultValues(v []ChannelSelectDefaultValueResponse)`
+
+SetDefaultValues sets DefaultValues field to given value.
+
+### HasDefaultValues
+
+`func (o *MessageComponentChannelSelectResponse) HasDefaultValues() bool`
+
+HasDefaultValues returns a boolean if a field has been set.
+
+### SetDefaultValuesNil
+
+`func (o *MessageComponentChannelSelectResponse) SetDefaultValuesNil(b bool)`
+
+ SetDefaultValuesNil sets the value for DefaultValues to be an explicit nil
+
+### UnsetDefaultValues
+`func (o *MessageComponentChannelSelectResponse) UnsetDefaultValues()`
+
+UnsetDefaultValues ensures that no value is present for DefaultValues, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

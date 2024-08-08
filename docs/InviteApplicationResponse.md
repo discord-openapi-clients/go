@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **PrivacyPolicyUrl** | Pointer to **NullableString** |  | [optional] 
 **CustomInstallUrl** | Pointer to **NullableString** |  | [optional] 
 **InstallParams** | Pointer to [**NullableApplicationOAuth2InstallParamsResponse**](ApplicationOAuth2InstallParamsResponse.md) |  | [optional] 
+**IntegrationTypesConfig** | Pointer to [**map[string]ApplicationIntegrationTypeConfigurationResponse**](ApplicationIntegrationTypeConfigurationResponse.md) |  | [optional] 
 **VerifyKey** | **string** |  | 
 **Flags** | **int32** |  | 
 **MaxParticipants** | Pointer to **NullableInt32** |  | [optional] 
@@ -575,6 +576,41 @@ HasInstallParams returns a boolean if a field has been set.
 `func (o *InviteApplicationResponse) UnsetInstallParams()`
 
 UnsetInstallParams ensures that no value is present for InstallParams, not even an explicit nil
+### GetIntegrationTypesConfig
+
+`func (o *InviteApplicationResponse) GetIntegrationTypesConfig() map[string]ApplicationIntegrationTypeConfigurationResponse`
+
+GetIntegrationTypesConfig returns the IntegrationTypesConfig field if non-nil, zero value otherwise.
+
+### GetIntegrationTypesConfigOk
+
+`func (o *InviteApplicationResponse) GetIntegrationTypesConfigOk() (*map[string]ApplicationIntegrationTypeConfigurationResponse, bool)`
+
+GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationTypesConfig
+
+`func (o *InviteApplicationResponse) SetIntegrationTypesConfig(v map[string]ApplicationIntegrationTypeConfigurationResponse)`
+
+SetIntegrationTypesConfig sets IntegrationTypesConfig field to given value.
+
+### HasIntegrationTypesConfig
+
+`func (o *InviteApplicationResponse) HasIntegrationTypesConfig() bool`
+
+HasIntegrationTypesConfig returns a boolean if a field has been set.
+
+### SetIntegrationTypesConfigNil
+
+`func (o *InviteApplicationResponse) SetIntegrationTypesConfigNil(b bool)`
+
+ SetIntegrationTypesConfigNil sets the value for IntegrationTypesConfig to be an explicit nil
+
+### UnsetIntegrationTypesConfig
+`func (o *InviteApplicationResponse) UnsetIntegrationTypesConfig()`
+
+UnsetIntegrationTypesConfig ensures that no value is present for IntegrationTypesConfig, not even an explicit nil
 ### GetVerifyKey
 
 `func (o *InviteApplicationResponse) GetVerifyKey() string`

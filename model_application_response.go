@@ -38,6 +38,7 @@ type ApplicationResponse struct {
 	PrivacyPolicyUrl NullableString `json:"privacy_policy_url,omitempty"`
 	CustomInstallUrl NullableString `json:"custom_install_url,omitempty"`
 	InstallParams NullableApplicationOAuth2InstallParamsResponse `json:"install_params,omitempty"`
+	IntegrationTypesConfig map[string]ApplicationIntegrationTypeConfigurationResponse `json:"integration_types_config,omitempty"`
 	VerifyKey string `json:"verify_key"`
 	Flags int32 `json:"flags"`
 	MaxParticipants NullableInt32 `json:"max_participants,omitempty"`
@@ -699,6 +700,39 @@ func (o *ApplicationResponse) UnsetInstallParams() {
 	o.InstallParams.Unset()
 }
 
+// GetIntegrationTypesConfig returns the IntegrationTypesConfig field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ApplicationResponse) GetIntegrationTypesConfig() map[string]ApplicationIntegrationTypeConfigurationResponse {
+	if o == nil {
+		var ret map[string]ApplicationIntegrationTypeConfigurationResponse
+		return ret
+	}
+	return o.IntegrationTypesConfig
+}
+
+// GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ApplicationResponse) GetIntegrationTypesConfigOk() (*map[string]ApplicationIntegrationTypeConfigurationResponse, bool) {
+	if o == nil || IsNil(o.IntegrationTypesConfig) {
+		return nil, false
+	}
+	return &o.IntegrationTypesConfig, true
+}
+
+// HasIntegrationTypesConfig returns a boolean if a field has been set.
+func (o *ApplicationResponse) HasIntegrationTypesConfig() bool {
+	if o != nil && !IsNil(o.IntegrationTypesConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationTypesConfig gets a reference to the given map[string]ApplicationIntegrationTypeConfigurationResponse and assigns it to the IntegrationTypesConfig field.
+func (o *ApplicationResponse) SetIntegrationTypesConfig(v map[string]ApplicationIntegrationTypeConfigurationResponse) {
+	o.IntegrationTypesConfig = v
+}
+
 // GetVerifyKey returns the VerifyKey field value
 func (o *ApplicationResponse) GetVerifyKey() string {
 	if o == nil {
@@ -876,6 +910,9 @@ func (o ApplicationResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.InstallParams.IsSet() {
 		toSerialize["install_params"] = o.InstallParams.Get()
+	}
+	if o.IntegrationTypesConfig != nil {
+		toSerialize["integration_types_config"] = o.IntegrationTypesConfig
 	}
 	toSerialize["verify_key"] = o.VerifyKey
 	toSerialize["flags"] = o.Flags

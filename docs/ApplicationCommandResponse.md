@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **DescriptionLocalizations** | Pointer to **map[string]string** |  | [optional] 
 **GuildId** | Pointer to **string** |  | [optional] 
 **DmPermission** | Pointer to **NullableBool** |  | [optional] 
+**Contexts** | Pointer to [**[]InteractionContextType**](InteractionContextType.md) |  | [optional] 
+**IntegrationTypes** | Pointer to [**[]ApplicationIntegrationType**](ApplicationIntegrationType.md) |  | [optional] 
 **Options** | Pointer to [**[]ApplicationCommandResponseOptionsInner**](ApplicationCommandResponseOptionsInner.md) |  | [optional] 
 **Nsfw** | Pointer to **NullableBool** |  | [optional] 
 
@@ -394,6 +396,76 @@ HasDmPermission returns a boolean if a field has been set.
 `func (o *ApplicationCommandResponse) UnsetDmPermission()`
 
 UnsetDmPermission ensures that no value is present for DmPermission, not even an explicit nil
+### GetContexts
+
+`func (o *ApplicationCommandResponse) GetContexts() []InteractionContextType`
+
+GetContexts returns the Contexts field if non-nil, zero value otherwise.
+
+### GetContextsOk
+
+`func (o *ApplicationCommandResponse) GetContextsOk() (*[]InteractionContextType, bool)`
+
+GetContextsOk returns a tuple with the Contexts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContexts
+
+`func (o *ApplicationCommandResponse) SetContexts(v []InteractionContextType)`
+
+SetContexts sets Contexts field to given value.
+
+### HasContexts
+
+`func (o *ApplicationCommandResponse) HasContexts() bool`
+
+HasContexts returns a boolean if a field has been set.
+
+### SetContextsNil
+
+`func (o *ApplicationCommandResponse) SetContextsNil(b bool)`
+
+ SetContextsNil sets the value for Contexts to be an explicit nil
+
+### UnsetContexts
+`func (o *ApplicationCommandResponse) UnsetContexts()`
+
+UnsetContexts ensures that no value is present for Contexts, not even an explicit nil
+### GetIntegrationTypes
+
+`func (o *ApplicationCommandResponse) GetIntegrationTypes() []ApplicationIntegrationType`
+
+GetIntegrationTypes returns the IntegrationTypes field if non-nil, zero value otherwise.
+
+### GetIntegrationTypesOk
+
+`func (o *ApplicationCommandResponse) GetIntegrationTypesOk() (*[]ApplicationIntegrationType, bool)`
+
+GetIntegrationTypesOk returns a tuple with the IntegrationTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationTypes
+
+`func (o *ApplicationCommandResponse) SetIntegrationTypes(v []ApplicationIntegrationType)`
+
+SetIntegrationTypes sets IntegrationTypes field to given value.
+
+### HasIntegrationTypes
+
+`func (o *ApplicationCommandResponse) HasIntegrationTypes() bool`
+
+HasIntegrationTypes returns a boolean if a field has been set.
+
+### SetIntegrationTypesNil
+
+`func (o *ApplicationCommandResponse) SetIntegrationTypesNil(b bool)`
+
+ SetIntegrationTypesNil sets the value for IntegrationTypes to be an explicit nil
+
+### UnsetIntegrationTypes
+`func (o *ApplicationCommandResponse) UnsetIntegrationTypes()`
+
+UnsetIntegrationTypes ensures that no value is present for IntegrationTypes, not even an explicit nil
 ### GetOptions
 
 `func (o *ApplicationCommandResponse) GetOptions() []ApplicationCommandResponseOptionsInner`

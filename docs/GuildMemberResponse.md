@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Avatar** | Pointer to **NullableString** |  | [optional] 
-**AvatarDecorationData** | Pointer to **map[string]interface{}** |  | [optional] 
+**AvatarDecorationData** | Pointer to [**NullableUserAvatarDecorationResponse**](UserAvatarDecorationResponse.md) |  | [optional] 
 **Banner** | Pointer to **NullableString** |  | [optional] 
 **CommunicationDisabledUntil** | Pointer to **NullableTime** |  | [optional] 
 **Flags** | **int32** |  | 
@@ -74,20 +74,20 @@ HasAvatar returns a boolean if a field has been set.
 UnsetAvatar ensures that no value is present for Avatar, not even an explicit nil
 ### GetAvatarDecorationData
 
-`func (o *GuildMemberResponse) GetAvatarDecorationData() map[string]interface{}`
+`func (o *GuildMemberResponse) GetAvatarDecorationData() UserAvatarDecorationResponse`
 
 GetAvatarDecorationData returns the AvatarDecorationData field if non-nil, zero value otherwise.
 
 ### GetAvatarDecorationDataOk
 
-`func (o *GuildMemberResponse) GetAvatarDecorationDataOk() (*map[string]interface{}, bool)`
+`func (o *GuildMemberResponse) GetAvatarDecorationDataOk() (*UserAvatarDecorationResponse, bool)`
 
 GetAvatarDecorationDataOk returns a tuple with the AvatarDecorationData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAvatarDecorationData
 
-`func (o *GuildMemberResponse) SetAvatarDecorationData(v map[string]interface{})`
+`func (o *GuildMemberResponse) SetAvatarDecorationData(v UserAvatarDecorationResponse)`
 
 SetAvatarDecorationData sets AvatarDecorationData field to given value.
 
@@ -97,6 +97,16 @@ SetAvatarDecorationData sets AvatarDecorationData field to given value.
 
 HasAvatarDecorationData returns a boolean if a field has been set.
 
+### SetAvatarDecorationDataNil
+
+`func (o *GuildMemberResponse) SetAvatarDecorationDataNil(b bool)`
+
+ SetAvatarDecorationDataNil sets the value for AvatarDecorationData to be an explicit nil
+
+### UnsetAvatarDecorationData
+`func (o *GuildMemberResponse) UnsetAvatarDecorationData()`
+
+UnsetAvatarDecorationData ensures that no value is present for AvatarDecorationData, not even an explicit nil
 ### GetBanner
 
 `func (o *GuildMemberResponse) GetBanner() string`

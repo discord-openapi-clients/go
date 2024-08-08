@@ -24,6 +24,9 @@ type MessageAttachmentRequest struct {
 	Id string `json:"id" validate:"regexp=^(0|[1-9][0-9]*)$"`
 	Filename NullableString `json:"filename,omitempty"`
 	Description NullableString `json:"description,omitempty"`
+	DurationSecs NullableFloat64 `json:"duration_secs,omitempty"`
+	Waveform NullableString `json:"waveform,omitempty"`
+	Title NullableString `json:"title,omitempty"`
 	IsRemix NullableBool `json:"is_remix,omitempty"`
 }
 
@@ -155,6 +158,132 @@ func (o *MessageAttachmentRequest) UnsetDescription() {
 	o.Description.Unset()
 }
 
+// GetDurationSecs returns the DurationSecs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageAttachmentRequest) GetDurationSecs() float64 {
+	if o == nil || IsNil(o.DurationSecs.Get()) {
+		var ret float64
+		return ret
+	}
+	return *o.DurationSecs.Get()
+}
+
+// GetDurationSecsOk returns a tuple with the DurationSecs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageAttachmentRequest) GetDurationSecsOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DurationSecs.Get(), o.DurationSecs.IsSet()
+}
+
+// HasDurationSecs returns a boolean if a field has been set.
+func (o *MessageAttachmentRequest) HasDurationSecs() bool {
+	if o != nil && o.DurationSecs.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDurationSecs gets a reference to the given NullableFloat64 and assigns it to the DurationSecs field.
+func (o *MessageAttachmentRequest) SetDurationSecs(v float64) {
+	o.DurationSecs.Set(&v)
+}
+// SetDurationSecsNil sets the value for DurationSecs to be an explicit nil
+func (o *MessageAttachmentRequest) SetDurationSecsNil() {
+	o.DurationSecs.Set(nil)
+}
+
+// UnsetDurationSecs ensures that no value is present for DurationSecs, not even an explicit nil
+func (o *MessageAttachmentRequest) UnsetDurationSecs() {
+	o.DurationSecs.Unset()
+}
+
+// GetWaveform returns the Waveform field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageAttachmentRequest) GetWaveform() string {
+	if o == nil || IsNil(o.Waveform.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Waveform.Get()
+}
+
+// GetWaveformOk returns a tuple with the Waveform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageAttachmentRequest) GetWaveformOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Waveform.Get(), o.Waveform.IsSet()
+}
+
+// HasWaveform returns a boolean if a field has been set.
+func (o *MessageAttachmentRequest) HasWaveform() bool {
+	if o != nil && o.Waveform.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWaveform gets a reference to the given NullableString and assigns it to the Waveform field.
+func (o *MessageAttachmentRequest) SetWaveform(v string) {
+	o.Waveform.Set(&v)
+}
+// SetWaveformNil sets the value for Waveform to be an explicit nil
+func (o *MessageAttachmentRequest) SetWaveformNil() {
+	o.Waveform.Set(nil)
+}
+
+// UnsetWaveform ensures that no value is present for Waveform, not even an explicit nil
+func (o *MessageAttachmentRequest) UnsetWaveform() {
+	o.Waveform.Unset()
+}
+
+// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageAttachmentRequest) GetTitle() string {
+	if o == nil || IsNil(o.Title.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Title.Get()
+}
+
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageAttachmentRequest) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Title.Get(), o.Title.IsSet()
+}
+
+// HasTitle returns a boolean if a field has been set.
+func (o *MessageAttachmentRequest) HasTitle() bool {
+	if o != nil && o.Title.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+func (o *MessageAttachmentRequest) SetTitle(v string) {
+	o.Title.Set(&v)
+}
+// SetTitleNil sets the value for Title to be an explicit nil
+func (o *MessageAttachmentRequest) SetTitleNil() {
+	o.Title.Set(nil)
+}
+
+// UnsetTitle ensures that no value is present for Title, not even an explicit nil
+func (o *MessageAttachmentRequest) UnsetTitle() {
+	o.Title.Unset()
+}
+
 // GetIsRemix returns the IsRemix field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MessageAttachmentRequest) GetIsRemix() bool {
 	if o == nil || IsNil(o.IsRemix.Get()) {
@@ -213,6 +342,15 @@ func (o MessageAttachmentRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
+	}
+	if o.DurationSecs.IsSet() {
+		toSerialize["duration_secs"] = o.DurationSecs.Get()
+	}
+	if o.Waveform.IsSet() {
+		toSerialize["waveform"] = o.Waveform.Get()
+	}
+	if o.Title.IsSet() {
+		toSerialize["title"] = o.Title.Get()
 	}
 	if o.IsRemix.IsSet() {
 		toSerialize["is_remix"] = o.IsRemix.Get()

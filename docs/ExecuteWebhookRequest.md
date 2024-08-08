@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **AllowedMentions** | Pointer to [**MessageAllowedMentionsRequest**](MessageAllowedMentionsRequest.md) |  | [optional] 
 **Components** | Pointer to [**[]ActionRow**](ActionRow.md) |  | [optional] 
 **Attachments** | Pointer to [**[]MessageAttachmentRequest**](MessageAttachmentRequest.md) |  | [optional] 
+**Poll** | Pointer to [**PollCreateRequest**](PollCreateRequest.md) |  | [optional] 
 **Tts** | Pointer to **NullableBool** |  | [optional] 
 **Flags** | Pointer to **NullableInt32** |  | [optional] 
 **Username** | Pointer to **NullableString** |  | [optional] 
@@ -200,6 +201,31 @@ HasAttachments returns a boolean if a field has been set.
 `func (o *ExecuteWebhookRequest) UnsetAttachments()`
 
 UnsetAttachments ensures that no value is present for Attachments, not even an explicit nil
+### GetPoll
+
+`func (o *ExecuteWebhookRequest) GetPoll() PollCreateRequest`
+
+GetPoll returns the Poll field if non-nil, zero value otherwise.
+
+### GetPollOk
+
+`func (o *ExecuteWebhookRequest) GetPollOk() (*PollCreateRequest, bool)`
+
+GetPollOk returns a tuple with the Poll field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPoll
+
+`func (o *ExecuteWebhookRequest) SetPoll(v PollCreateRequest)`
+
+SetPoll sets Poll field to given value.
+
+### HasPoll
+
+`func (o *ExecuteWebhookRequest) HasPoll() bool`
+
+HasPoll returns a boolean if a field has been set.
+
 ### GetTts
 
 `func (o *ExecuteWebhookRequest) GetTts() bool`

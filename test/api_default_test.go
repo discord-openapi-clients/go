@@ -221,6 +221,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DefaultAPIService CreateApplicationEmoji", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.CreateApplicationEmoji(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DefaultAPIService CreateAutoModerationRule", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -549,6 +563,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var commandId string
 
 		httpRes, err := apiClient.DefaultAPI.DeleteApplicationCommand(context.Background(), applicationId, commandId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService DeleteApplicationEmoji", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+		var emojiId string
+
+		httpRes, err := apiClient.DefaultAPI.DeleteApplicationEmoji(context.Background(), applicationId, emojiId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -994,6 +1022,22 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DefaultAPIService GetAnswerVoters", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var channelId string
+		var messageId string
+		var answerId int32
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetAnswerVoters(context.Background(), channelId, messageId, answerId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DefaultAPIService GetApplication", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1016,6 +1060,21 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var commandId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.GetApplicationCommand(context.Background(), applicationId, commandId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService GetApplicationEmoji", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+		var emojiId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetApplicationEmoji(context.Background(), applicationId, emojiId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -1513,6 +1572,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DefaultAPIService GetSelfVoiceState", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var guildId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetSelfVoiceState(context.Background(), guildId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DefaultAPIService GetSoundboardDefaultSounds", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1575,6 +1648,21 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var userId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.GetUser(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService GetVoiceState", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var guildId string
+		var userId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetVoiceState(context.Background(), guildId, userId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -1701,6 +1789,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var applicationId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.ListApplicationCommands(context.Background(), applicationId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService ListApplicationEmojis", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.ListApplicationEmojis(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -2139,6 +2241,21 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DefaultAPIService PollExpire", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var channelId string
+		var messageId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.PollExpire(context.Background(), channelId, messageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DefaultAPIService PreviewPruneGuild", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -2318,6 +2435,21 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var commandId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.UpdateApplicationCommand(context.Background(), applicationId, commandId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService UpdateApplicationEmoji", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+		var emojiId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.UpdateApplicationEmoji(context.Background(), applicationId, emojiId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -2692,6 +2824,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var messageId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.UpdateWebhookMessage(context.Background(), webhookId, webhookToken, messageId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService UploadApplicationAttachment", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var applicationId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.UploadApplicationAttachment(context.Background(), applicationId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -32,6 +32,7 @@ type UserResponse struct {
 	Banner NullableString `json:"banner,omitempty"`
 	AccentColor NullableInt32 `json:"accent_color,omitempty"`
 	GlobalName NullableString `json:"global_name,omitempty"`
+	AvatarDecorationData NullableUserAvatarDecorationResponse `json:"avatar_decoration_data,omitempty"`
 }
 
 type _UserResponse UserResponse
@@ -430,6 +431,48 @@ func (o *UserResponse) UnsetGlobalName() {
 	o.GlobalName.Unset()
 }
 
+// GetAvatarDecorationData returns the AvatarDecorationData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserResponse) GetAvatarDecorationData() UserAvatarDecorationResponse {
+	if o == nil || IsNil(o.AvatarDecorationData.Get()) {
+		var ret UserAvatarDecorationResponse
+		return ret
+	}
+	return *o.AvatarDecorationData.Get()
+}
+
+// GetAvatarDecorationDataOk returns a tuple with the AvatarDecorationData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserResponse) GetAvatarDecorationDataOk() (*UserAvatarDecorationResponse, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AvatarDecorationData.Get(), o.AvatarDecorationData.IsSet()
+}
+
+// HasAvatarDecorationData returns a boolean if a field has been set.
+func (o *UserResponse) HasAvatarDecorationData() bool {
+	if o != nil && o.AvatarDecorationData.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAvatarDecorationData gets a reference to the given NullableUserAvatarDecorationResponse and assigns it to the AvatarDecorationData field.
+func (o *UserResponse) SetAvatarDecorationData(v UserAvatarDecorationResponse) {
+	o.AvatarDecorationData.Set(&v)
+}
+// SetAvatarDecorationDataNil sets the value for AvatarDecorationData to be an explicit nil
+func (o *UserResponse) SetAvatarDecorationDataNil() {
+	o.AvatarDecorationData.Set(nil)
+}
+
+// UnsetAvatarDecorationData ensures that no value is present for AvatarDecorationData, not even an explicit nil
+func (o *UserResponse) UnsetAvatarDecorationData() {
+	o.AvatarDecorationData.Unset()
+}
+
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -462,6 +505,9 @@ func (o UserResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.GlobalName.IsSet() {
 		toSerialize["global_name"] = o.GlobalName.Get()
+	}
+	if o.AvatarDecorationData.IsSet() {
+		toSerialize["avatar_decoration_data"] = o.AvatarDecorationData.Get()
 	}
 	return toSerialize, nil
 }

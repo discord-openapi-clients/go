@@ -32,6 +32,7 @@ type UserPIIResponse struct {
 	Banner NullableString `json:"banner,omitempty"`
 	AccentColor NullableInt32 `json:"accent_color,omitempty"`
 	GlobalName NullableString `json:"global_name,omitempty"`
+	AvatarDecorationData NullableUserAvatarDecorationResponse `json:"avatar_decoration_data,omitempty"`
 	MfaEnabled bool `json:"mfa_enabled"`
 	Locale AvailableLocalesEnum `json:"locale"`
 	PremiumType NullablePremiumTypes `json:"premium_type,omitempty"`
@@ -437,6 +438,48 @@ func (o *UserPIIResponse) UnsetGlobalName() {
 	o.GlobalName.Unset()
 }
 
+// GetAvatarDecorationData returns the AvatarDecorationData field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserPIIResponse) GetAvatarDecorationData() UserAvatarDecorationResponse {
+	if o == nil || IsNil(o.AvatarDecorationData.Get()) {
+		var ret UserAvatarDecorationResponse
+		return ret
+	}
+	return *o.AvatarDecorationData.Get()
+}
+
+// GetAvatarDecorationDataOk returns a tuple with the AvatarDecorationData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UserPIIResponse) GetAvatarDecorationDataOk() (*UserAvatarDecorationResponse, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AvatarDecorationData.Get(), o.AvatarDecorationData.IsSet()
+}
+
+// HasAvatarDecorationData returns a boolean if a field has been set.
+func (o *UserPIIResponse) HasAvatarDecorationData() bool {
+	if o != nil && o.AvatarDecorationData.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAvatarDecorationData gets a reference to the given NullableUserAvatarDecorationResponse and assigns it to the AvatarDecorationData field.
+func (o *UserPIIResponse) SetAvatarDecorationData(v UserAvatarDecorationResponse) {
+	o.AvatarDecorationData.Set(&v)
+}
+// SetAvatarDecorationDataNil sets the value for AvatarDecorationData to be an explicit nil
+func (o *UserPIIResponse) SetAvatarDecorationDataNil() {
+	o.AvatarDecorationData.Set(nil)
+}
+
+// UnsetAvatarDecorationData ensures that no value is present for AvatarDecorationData, not even an explicit nil
+func (o *UserPIIResponse) UnsetAvatarDecorationData() {
+	o.AvatarDecorationData.Unset()
+}
+
 // GetMfaEnabled returns the MfaEnabled field value
 func (o *UserPIIResponse) GetMfaEnabled() bool {
 	if o == nil {
@@ -643,6 +686,9 @@ func (o UserPIIResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if o.GlobalName.IsSet() {
 		toSerialize["global_name"] = o.GlobalName.Get()
+	}
+	if o.AvatarDecorationData.IsSet() {
+		toSerialize["avatar_decoration_data"] = o.AvatarDecorationData.Get()
 	}
 	toSerialize["mfa_enabled"] = o.MfaEnabled
 	toSerialize["locale"] = o.Locale

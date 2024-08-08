@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Banner** | Pointer to **NullableString** |  | [optional] 
 **AccentColor** | Pointer to **NullableInt32** |  | [optional] 
 **GlobalName** | Pointer to **NullableString** |  | [optional] 
+**AvatarDecorationData** | Pointer to [**NullableUserAvatarDecorationResponse**](UserAvatarDecorationResponse.md) |  | [optional] 
 **MfaEnabled** | **bool** |  | 
 **Locale** | [**AvailableLocalesEnum**](AvailableLocalesEnum.md) |  | 
 **PremiumType** | Pointer to [**NullablePremiumTypes**](PremiumTypes.md) |  | [optional] 
@@ -350,6 +351,41 @@ HasGlobalName returns a boolean if a field has been set.
 `func (o *UserPIIResponse) UnsetGlobalName()`
 
 UnsetGlobalName ensures that no value is present for GlobalName, not even an explicit nil
+### GetAvatarDecorationData
+
+`func (o *UserPIIResponse) GetAvatarDecorationData() UserAvatarDecorationResponse`
+
+GetAvatarDecorationData returns the AvatarDecorationData field if non-nil, zero value otherwise.
+
+### GetAvatarDecorationDataOk
+
+`func (o *UserPIIResponse) GetAvatarDecorationDataOk() (*UserAvatarDecorationResponse, bool)`
+
+GetAvatarDecorationDataOk returns a tuple with the AvatarDecorationData field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAvatarDecorationData
+
+`func (o *UserPIIResponse) SetAvatarDecorationData(v UserAvatarDecorationResponse)`
+
+SetAvatarDecorationData sets AvatarDecorationData field to given value.
+
+### HasAvatarDecorationData
+
+`func (o *UserPIIResponse) HasAvatarDecorationData() bool`
+
+HasAvatarDecorationData returns a boolean if a field has been set.
+
+### SetAvatarDecorationDataNil
+
+`func (o *UserPIIResponse) SetAvatarDecorationDataNil(b bool)`
+
+ SetAvatarDecorationDataNil sets the value for AvatarDecorationData to be an explicit nil
+
+### UnsetAvatarDecorationData
+`func (o *UserPIIResponse) UnsetAvatarDecorationData()`
+
+UnsetAvatarDecorationData ensures that no value is present for AvatarDecorationData, not even an explicit nil
 ### GetMfaEnabled
 
 `func (o *UserPIIResponse) GetMfaEnabled() bool`

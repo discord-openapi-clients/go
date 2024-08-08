@@ -26,8 +26,10 @@ type MessageCreateRequest struct {
 	Components []ActionRow `json:"components,omitempty"`
 	Flags NullableInt32 `json:"flags,omitempty"`
 	Attachments []MessageAttachmentRequest `json:"attachments,omitempty"`
+	Poll NullablePollCreateRequest `json:"poll,omitempty"`
 	MessageReference NullableMessageReferenceRequest `json:"message_reference,omitempty"`
 	Nonce NullableBasicMessageResponseNonce `json:"nonce,omitempty"`
+	EnforceNonce NullableBool `json:"enforce_nonce,omitempty"`
 	Tts NullableBool `json:"tts,omitempty"`
 }
 
@@ -306,6 +308,48 @@ func (o *MessageCreateRequest) SetAttachments(v []MessageAttachmentRequest) {
 	o.Attachments = v
 }
 
+// GetPoll returns the Poll field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageCreateRequest) GetPoll() PollCreateRequest {
+	if o == nil || IsNil(o.Poll.Get()) {
+		var ret PollCreateRequest
+		return ret
+	}
+	return *o.Poll.Get()
+}
+
+// GetPollOk returns a tuple with the Poll field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageCreateRequest) GetPollOk() (*PollCreateRequest, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Poll.Get(), o.Poll.IsSet()
+}
+
+// HasPoll returns a boolean if a field has been set.
+func (o *MessageCreateRequest) HasPoll() bool {
+	if o != nil && o.Poll.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPoll gets a reference to the given NullablePollCreateRequest and assigns it to the Poll field.
+func (o *MessageCreateRequest) SetPoll(v PollCreateRequest) {
+	o.Poll.Set(&v)
+}
+// SetPollNil sets the value for Poll to be an explicit nil
+func (o *MessageCreateRequest) SetPollNil() {
+	o.Poll.Set(nil)
+}
+
+// UnsetPoll ensures that no value is present for Poll, not even an explicit nil
+func (o *MessageCreateRequest) UnsetPoll() {
+	o.Poll.Unset()
+}
+
 // GetMessageReference returns the MessageReference field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MessageCreateRequest) GetMessageReference() MessageReferenceRequest {
 	if o == nil || IsNil(o.MessageReference.Get()) {
@@ -390,6 +434,48 @@ func (o *MessageCreateRequest) UnsetNonce() {
 	o.Nonce.Unset()
 }
 
+// GetEnforceNonce returns the EnforceNonce field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MessageCreateRequest) GetEnforceNonce() bool {
+	if o == nil || IsNil(o.EnforceNonce.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.EnforceNonce.Get()
+}
+
+// GetEnforceNonceOk returns a tuple with the EnforceNonce field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MessageCreateRequest) GetEnforceNonceOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EnforceNonce.Get(), o.EnforceNonce.IsSet()
+}
+
+// HasEnforceNonce returns a boolean if a field has been set.
+func (o *MessageCreateRequest) HasEnforceNonce() bool {
+	if o != nil && o.EnforceNonce.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEnforceNonce gets a reference to the given NullableBool and assigns it to the EnforceNonce field.
+func (o *MessageCreateRequest) SetEnforceNonce(v bool) {
+	o.EnforceNonce.Set(&v)
+}
+// SetEnforceNonceNil sets the value for EnforceNonce to be an explicit nil
+func (o *MessageCreateRequest) SetEnforceNonceNil() {
+	o.EnforceNonce.Set(nil)
+}
+
+// UnsetEnforceNonce ensures that no value is present for EnforceNonce, not even an explicit nil
+func (o *MessageCreateRequest) UnsetEnforceNonce() {
+	o.EnforceNonce.Unset()
+}
+
 // GetTts returns the Tts field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MessageCreateRequest) GetTts() bool {
 	if o == nil || IsNil(o.Tts.Get()) {
@@ -463,11 +549,17 @@ func (o MessageCreateRequest) ToMap() (map[string]interface{}, error) {
 	if o.Attachments != nil {
 		toSerialize["attachments"] = o.Attachments
 	}
+	if o.Poll.IsSet() {
+		toSerialize["poll"] = o.Poll.Get()
+	}
 	if o.MessageReference.IsSet() {
 		toSerialize["message_reference"] = o.MessageReference.Get()
 	}
 	if o.Nonce.IsSet() {
 		toSerialize["nonce"] = o.Nonce.Get()
+	}
+	if o.EnforceNonce.IsSet() {
+		toSerialize["enforce_nonce"] = o.EnforceNonce.Get()
 	}
 	if o.Tts.IsSet() {
 		toSerialize["tts"] = o.Tts.Get()
