@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // ListChannelInvites200ResponseInner struct for ListChannelInvites200ResponseInner
 type ListChannelInvites200ResponseInner struct {
 	FriendInviteResponse *FriendInviteResponse
@@ -83,6 +84,7 @@ func (src *ListChannelInvites200ResponseInner) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableListChannelInvites200ResponseInner struct {
 	value *ListChannelInvites200ResponseInner

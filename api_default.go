@@ -3733,10 +3733,10 @@ func (a *DefaultAPIService) CreateGuildStickerExecute(r ApiCreateGuildStickerReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "")
-	parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "name", r.name, "", "")
+	parameterAddToHeaderOrQuery(localVarFormParams, "tags", r.tags, "", "")
 	if r.description != nil {
-		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "")
+		parameterAddToHeaderOrQuery(localVarFormParams, "description", r.description, "", "")
 	}
 	var fileLocalVarFormFileName string
 	var fileLocalVarFileName     string
@@ -3956,6 +3956,7 @@ type ApiCreateInteractionResponseRequest struct {
 	interactionId string
 	interactionToken string
 	createInteractionResponseRequest *CreateInteractionResponseRequest
+	withResponse *bool
 }
 
 func (r ApiCreateInteractionResponseRequest) CreateInteractionResponseRequest(createInteractionResponseRequest CreateInteractionResponseRequest) ApiCreateInteractionResponseRequest {
@@ -3963,7 +3964,12 @@ func (r ApiCreateInteractionResponseRequest) CreateInteractionResponseRequest(cr
 	return r
 }
 
-func (r ApiCreateInteractionResponseRequest) Execute() (*http.Response, error) {
+func (r ApiCreateInteractionResponseRequest) WithResponse(withResponse bool) ApiCreateInteractionResponseRequest {
+	r.withResponse = &withResponse
+	return r
+}
+
+func (r ApiCreateInteractionResponseRequest) Execute() (*InteractionCallbackResponse, *http.Response, error) {
 	return r.ApiService.CreateInteractionResponseExecute(r)
 }
 
@@ -3985,16 +3991,18 @@ func (a *DefaultAPIService) CreateInteractionResponse(ctx context.Context, inter
 }
 
 // Execute executes the request
-func (a *DefaultAPIService) CreateInteractionResponseExecute(r ApiCreateInteractionResponseRequest) (*http.Response, error) {
+//  @return InteractionCallbackResponse
+func (a *DefaultAPIService) CreateInteractionResponseExecute(r ApiCreateInteractionResponseRequest) (*InteractionCallbackResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  *InteractionCallbackResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultAPIService.CreateInteractionResponse")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/interactions/{interaction_id}/{interaction_token}/callback"
@@ -4005,12 +4013,15 @@ func (a *DefaultAPIService) CreateInteractionResponseExecute(r ApiCreateInteract
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.interactionToken) > 152133 {
-		return nil, reportError("interactionToken must have less than 152133 elements")
+		return localVarReturnValue, nil, reportError("interactionToken must have less than 152133 elements")
 	}
 	if r.createInteractionResponseRequest == nil {
-		return nil, reportError("createInteractionResponseRequest is required and must be specified")
+		return localVarReturnValue, nil, reportError("createInteractionResponseRequest is required and must be specified")
 	}
 
+	if r.withResponse != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_response", r.withResponse, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
 
@@ -4046,19 +4057,19 @@ func (a *DefaultAPIService) CreateInteractionResponseExecute(r ApiCreateInteract
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -4071,15 +4082,24 @@ func (a *DefaultAPIService) CreateInteractionResponseExecute(r ApiCreateInteract
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiCreateMessageRequest struct {
@@ -7685,7 +7705,7 @@ func (a *DefaultAPIService) DeleteOriginalWebhookMessageExecute(r ApiDeleteOrigi
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8415,7 +8435,7 @@ func (a *DefaultAPIService) DeleteWebhookMessageExecute(r ApiDeleteWebhookMessag
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -8560,10 +8580,10 @@ func (a *DefaultAPIService) ExecuteGithubCompatibleWebhookExecute(r ApiExecuteGi
 	}
 
 	if r.wait != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "form", "")
 	}
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -8712,10 +8732,10 @@ func (a *DefaultAPIService) ExecuteSlackCompatibleWebhookExecute(r ApiExecuteSla
 	}
 
 	if r.wait != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "form", "")
 	}
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
@@ -8873,10 +8893,10 @@ func (a *DefaultAPIService) ExecuteWebhookExecute(r ApiExecuteWebhookRequest) (*
 	}
 
 	if r.wait != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "wait", r.wait, "form", "")
 	}
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
@@ -9293,10 +9313,10 @@ func (a *DefaultAPIService) GetAnswerVotersExecute(r ApiGetAnswerVotersRequest) 
 	}
 
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10598,26 +10618,26 @@ func (a *DefaultAPIService) GetEntitlementsExecute(r ApiGetEntitlementsRequest) 
 	}
 
 	if r.userId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "form", "")
 	}
-	parameterAddToHeaderOrQuery(localVarQueryParams, "sku_ids", r.skuIds, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "sku_ids", r.skuIds, "form", "")
 	if r.guildId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "guild_id", r.guildId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "guild_id", r.guildId, "form", "")
 	}
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.excludeEnded != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_ended", r.excludeEnded, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "exclude_ended", r.excludeEnded, "form", "")
 	}
 	if r.onlyActive != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "only_active", r.onlyActive, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "only_active", r.onlyActive, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -10872,7 +10892,7 @@ func (a *DefaultAPIService) GetGuildExecute(r ApiGetGuildRequest) (*GuildWithCou
 	localVarFormParams := url.Values{}
 
 	if r.withCounts != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -11913,7 +11933,7 @@ func (a *DefaultAPIService) GetGuildScheduledEventExecute(r ApiGetGuildScheduled
 	localVarFormParams := url.Values{}
 
 	if r.withUserCount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_user_count", r.withUserCount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_user_count", r.withUserCount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -12933,7 +12953,7 @@ func (a *DefaultAPIService) GetGuildWidgetPngExecute(r ApiGetGuildWidgetPngReque
 	localVarFormParams := url.Values{}
 
 	if r.style != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "style", r.style, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "style", r.style, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14048,7 +14068,7 @@ func (a *DefaultAPIService) GetOriginalWebhookMessageExecute(r ApiGetOriginalWeb
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -14803,7 +14823,7 @@ func (a *DefaultAPIService) GetThreadMemberExecute(r ApiGetThreadMemberRequest) 
 	localVarFormParams := url.Values{}
 
 	if r.withMember != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15459,7 +15479,7 @@ func (a *DefaultAPIService) GetWebhookMessageExecute(r ApiGetWebhookMessageReque
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -15602,10 +15622,10 @@ func (a *DefaultAPIService) InviteResolveExecute(r ApiInviteResolveRequest) (*Li
 	}
 
 	if r.withCounts != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "form", "")
 	}
 	if r.guildScheduledEventId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "guild_scheduled_event_id", r.guildScheduledEventId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "guild_scheduled_event_id", r.guildScheduledEventId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -16209,7 +16229,7 @@ func (a *DefaultAPIService) ListApplicationCommandsExecute(r ApiListApplicationC
 	localVarFormParams := url.Values{}
 
 	if r.withLocalizations != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_localizations", r.withLocalizations, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_localizations", r.withLocalizations, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -16976,7 +16996,7 @@ func (a *DefaultAPIService) ListGuildApplicationCommandsExecute(r ApiListGuildAp
 	localVarFormParams := url.Values{}
 
 	if r.withLocalizations != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_localizations", r.withLocalizations, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_localizations", r.withLocalizations, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -17140,22 +17160,22 @@ func (a *DefaultAPIService) ListGuildAuditLogEntriesExecute(r ApiListGuildAuditL
 	localVarFormParams := url.Values{}
 
 	if r.userId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "user_id", r.userId, "form", "")
 	}
 	if r.targetId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "target_id", r.targetId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "target_id", r.targetId, "form", "")
 	}
 	if r.actionType != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "action_type", r.actionType, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "action_type", r.actionType, "form", "")
 	}
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -17301,13 +17321,13 @@ func (a *DefaultAPIService) ListGuildBansExecute(r ApiListGuildBansRequest) ([]G
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -17947,10 +17967,10 @@ func (a *DefaultAPIService) ListGuildMembersExecute(r ApiListGuildMembersRequest
 	localVarFormParams := url.Values{}
 
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18231,16 +18251,16 @@ func (a *DefaultAPIService) ListGuildScheduledEventUsersExecute(r ApiListGuildSc
 	localVarFormParams := url.Values{}
 
 	if r.withMember != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -18374,7 +18394,7 @@ func (a *DefaultAPIService) ListGuildScheduledEventsExecute(r ApiListGuildSchedu
 	localVarFormParams := url.Values{}
 
 	if r.withUserCount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_user_count", r.withUserCount, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_user_count", r.withUserCount, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19031,13 +19051,13 @@ func (a *DefaultAPIService) ListMessageReactionsByEmojiExecute(r ApiListMessageR
 	}
 
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.type_ != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19189,16 +19209,16 @@ func (a *DefaultAPIService) ListMessagesExecute(r ApiListMessagesRequest) ([]Mes
 	localVarFormParams := url.Values{}
 
 	if r.around != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "around", r.around, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "around", r.around, "form", "")
 	}
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19467,16 +19487,16 @@ func (a *DefaultAPIService) ListMyGuildsExecute(r ApiListMyGuildsRequest) ([]MyG
 	localVarFormParams := url.Values{}
 
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.withCounts != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_counts", r.withCounts, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19616,10 +19636,10 @@ func (a *DefaultAPIService) ListMyPrivateArchivedThreadsExecute(r ApiListMyPriva
 	localVarFormParams := url.Values{}
 
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -19884,10 +19904,10 @@ func (a *DefaultAPIService) ListPrivateArchivedThreadsExecute(r ApiListPrivateAr
 	localVarFormParams := url.Values{}
 
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20027,10 +20047,10 @@ func (a *DefaultAPIService) ListPublicArchivedThreadsExecute(r ApiListPublicArch
 	localVarFormParams := url.Values{}
 
 	if r.before != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "before", r.before, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20297,13 +20317,13 @@ func (a *DefaultAPIService) ListThreadMembersExecute(r ApiListThreadMembersReque
 	localVarFormParams := url.Values{}
 
 	if r.withMember != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "with_member", r.withMember, "form", "")
 	}
 	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.after != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "after", r.after, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -20811,10 +20831,10 @@ func (a *DefaultAPIService) PreviewPruneGuildExecute(r ApiPreviewPruneGuildReque
 	localVarFormParams := url.Values{}
 
 	if r.days != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "days", r.days, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "days", r.days, "form", "")
 	}
 	if r.includeRoles != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "include_roles", r.includeRoles, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include_roles", r.includeRoles, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -21243,8 +21263,8 @@ func (a *DefaultAPIService) SearchGuildMembersExecute(r ApiSearchGuildMembersReq
 		return localVarReturnValue, nil, reportError("query must have less than 100 elements")
 	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
-	parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "query", r.query, "form", "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -25323,7 +25343,7 @@ func (a *DefaultAPIService) UpdateOriginalWebhookMessageExecute(r ApiUpdateOrigi
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
@@ -26148,7 +26168,7 @@ func (a *DefaultAPIService) UpdateWebhookMessageExecute(r ApiUpdateWebhookMessag
 	}
 
 	if r.threadId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "thread_id", r.threadId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json", "application/x-www-form-urlencoded", "multipart/form-data"}
