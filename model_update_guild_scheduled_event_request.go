@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // UpdateGuildScheduledEventRequest struct for UpdateGuildScheduledEventRequest
 type UpdateGuildScheduledEventRequest struct {
 	ExternalScheduledEventPatchRequestPartial *ExternalScheduledEventPatchRequestPartial
@@ -83,6 +84,7 @@ func (src *UpdateGuildScheduledEventRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableUpdateGuildScheduledEventRequest struct {
 	value *UpdateGuildScheduledEventRequest

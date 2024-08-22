@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // CreateChannelInviteRequest struct for CreateChannelInviteRequest
 type CreateChannelInviteRequest struct {
 	CreateGroupDMInviteRequest *CreateGroupDMInviteRequest
@@ -65,6 +66,7 @@ func (src *CreateChannelInviteRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableCreateChannelInviteRequest struct {
 	value *CreateChannelInviteRequest

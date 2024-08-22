@@ -435,9 +435,10 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var interactionId string
 		var interactionToken string
 
-		httpRes, err := apiClient.DefaultAPI.CreateInteractionResponse(context.Background(), interactionId, interactionToken).Execute()
+		resp, httpRes, err := apiClient.DefaultAPI.CreateInteractionResponse(context.Background(), interactionId, interactionToken).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
