@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // UpdateChannelRequest struct for UpdateChannelRequest
 type UpdateChannelRequest struct {
 	PrivateChannelRequestPartial *PrivateChannelRequestPartial
@@ -83,6 +84,7 @@ func (src *UpdateChannelRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableUpdateChannelRequest struct {
 	value *UpdateChannelRequest

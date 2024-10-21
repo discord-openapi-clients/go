@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // ApplicationCommandAutocompleteCallbackRequestData struct for ApplicationCommandAutocompleteCallbackRequestData
 type ApplicationCommandAutocompleteCallbackRequestData struct {
 	InteractionApplicationCommandAutocompleteCallbackIntegerData *InteractionApplicationCommandAutocompleteCallbackIntegerData
@@ -83,6 +84,7 @@ func (src *ApplicationCommandAutocompleteCallbackRequestData) MarshalJSON() ([]b
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableApplicationCommandAutocompleteCallbackRequestData struct {
 	value *ApplicationCommandAutocompleteCallbackRequestData

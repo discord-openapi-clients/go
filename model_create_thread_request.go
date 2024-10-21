@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // CreateThreadRequest struct for CreateThreadRequest
 type CreateThreadRequest struct {
 	CreateForumThreadRequest *CreateForumThreadRequest
@@ -65,6 +66,7 @@ func (src *CreateThreadRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableCreateThreadRequest struct {
 	value *CreateThreadRequest

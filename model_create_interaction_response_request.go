@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // CreateInteractionResponseRequest struct for CreateInteractionResponseRequest
 type CreateInteractionResponseRequest struct {
 	ApplicationCommandAutocompleteCallbackRequest *ApplicationCommandAutocompleteCallbackRequest
@@ -119,6 +120,7 @@ func (src *CreateInteractionResponseRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableCreateInteractionResponseRequest struct {
 	value *CreateInteractionResponseRequest

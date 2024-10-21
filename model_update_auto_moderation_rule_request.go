@@ -15,6 +15,7 @@ import (
 	"fmt"
 )
 
+
 // UpdateAutoModerationRuleRequest struct for UpdateAutoModerationRuleRequest
 type UpdateAutoModerationRuleRequest struct {
 	DefaultKeywordListUpsertRequestPartial *DefaultKeywordListUpsertRequestPartial
@@ -101,6 +102,7 @@ func (src *UpdateAutoModerationRuleRequest) MarshalJSON() ([]byte, error) {
 
 	return nil, nil // no data in anyOf schemas
 }
+
 
 type NullableUpdateAutoModerationRuleRequest struct {
 	value *UpdateAutoModerationRuleRequest
