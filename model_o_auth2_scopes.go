@@ -12,76 +12,43 @@ package discord
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
-	"fmt"
 )
 
-// OAuth2Scopes - struct for OAuth2Scopes
+// checks if the OAuth2Scopes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OAuth2Scopes{}
+
+// OAuth2Scopes struct for OAuth2Scopes
 type OAuth2Scopes struct {
-	String *string
 }
 
-// stringAsOAuth2Scopes is a convenience function that returns string wrapped in OAuth2Scopes
-func StringAsOAuth2Scopes(v *string) OAuth2Scopes {
-	return OAuth2Scopes{
-		String: v,
-	}
+// NewOAuth2Scopes instantiates a new OAuth2Scopes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOAuth2Scopes() *OAuth2Scopes {
+	this := OAuth2Scopes{}
+	return &this
 }
 
-
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *OAuth2Scopes) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
-	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
-		} else {
-			if err = validator.Validate(dst.String); err != nil {
-				dst.String = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.String = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.String = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(OAuth2Scopes)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(OAuth2Scopes)")
-	}
+// NewOAuth2ScopesWithDefaults instantiates a new OAuth2Scopes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOAuth2ScopesWithDefaults() *OAuth2Scopes {
+	this := OAuth2Scopes{}
+	return &this
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src OAuth2Scopes) MarshalJSON() ([]byte, error) {
-	if src.String != nil {
-		return json.Marshal(&src.String)
+func (o OAuth2Scopes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-
-	return nil, nil // no data in oneOf schemas
+	return json.Marshal(toSerialize)
 }
 
-// Get the actual instance
-func (obj *OAuth2Scopes) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.String != nil {
-		return obj.String
-	}
-
-	// all schemas are nil
-	return nil
+func (o OAuth2Scopes) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	return toSerialize, nil
 }
 
 type NullableOAuth2Scopes struct {

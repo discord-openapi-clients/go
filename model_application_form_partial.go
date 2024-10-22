@@ -591,11 +591,11 @@ func (o *ApplicationFormPartial) GetIntegrationTypesConfig() map[string]Applicat
 // GetIntegrationTypesConfigOk returns a tuple with the IntegrationTypesConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ApplicationFormPartial) GetIntegrationTypesConfigOk() (*map[string]ApplicationFormPartialIntegrationTypesConfigValue, bool) {
+func (o *ApplicationFormPartial) GetIntegrationTypesConfigOk() (map[string]ApplicationFormPartialIntegrationTypesConfigValue, bool) {
 	if o == nil || IsNil(o.IntegrationTypesConfig) {
-		return nil, false
+		return map[string]ApplicationFormPartialIntegrationTypesConfigValue{}, false
 	}
-	return &o.IntegrationTypesConfig, true
+	return o.IntegrationTypesConfig, true
 }
 
 // HasIntegrationTypesConfig returns a boolean if a field has been set.

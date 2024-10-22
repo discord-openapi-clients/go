@@ -12,76 +12,43 @@ package discord
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
-	"fmt"
 )
 
-// PremiumGuildTiers - struct for PremiumGuildTiers
+// checks if the PremiumGuildTiers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PremiumGuildTiers{}
+
+// PremiumGuildTiers struct for PremiumGuildTiers
 type PremiumGuildTiers struct {
-	Float32 *float32
 }
 
-// float32AsPremiumGuildTiers is a convenience function that returns float32 wrapped in PremiumGuildTiers
-func Float32AsPremiumGuildTiers(v *float32) PremiumGuildTiers {
-	return PremiumGuildTiers{
-		Float32: v,
-	}
+// NewPremiumGuildTiers instantiates a new PremiumGuildTiers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPremiumGuildTiers() *PremiumGuildTiers {
+	this := PremiumGuildTiers{}
+	return &this
 }
 
-
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *PremiumGuildTiers) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into Float32
-	err = newStrictDecoder(data).Decode(&dst.Float32)
-	if err == nil {
-		jsonFloat32, _ := json.Marshal(dst.Float32)
-		if string(jsonFloat32) == "{}" { // empty struct
-			dst.Float32 = nil
-		} else {
-			if err = validator.Validate(dst.Float32); err != nil {
-				dst.Float32 = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.Float32 = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.Float32 = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(PremiumGuildTiers)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(PremiumGuildTiers)")
-	}
+// NewPremiumGuildTiersWithDefaults instantiates a new PremiumGuildTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPremiumGuildTiersWithDefaults() *PremiumGuildTiers {
+	this := PremiumGuildTiers{}
+	return &this
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src PremiumGuildTiers) MarshalJSON() ([]byte, error) {
-	if src.Float32 != nil {
-		return json.Marshal(&src.Float32)
+func (o PremiumGuildTiers) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-
-	return nil, nil // no data in oneOf schemas
+	return json.Marshal(toSerialize)
 }
 
-// Get the actual instance
-func (obj *PremiumGuildTiers) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.Float32 != nil {
-		return obj.Float32
-	}
-
-	// all schemas are nil
-	return nil
+func (o PremiumGuildTiers) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	return toSerialize, nil
 }
 
 type NullablePremiumGuildTiers struct {

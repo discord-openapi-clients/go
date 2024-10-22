@@ -110,11 +110,11 @@ func (o *ResolvedObjectsResponse) GetChannels() map[string]ListGuildChannels200R
 
 // GetChannelsOk returns a tuple with the Channels field value
 // and a boolean to check if the value has been set.
-func (o *ResolvedObjectsResponse) GetChannelsOk() (*map[string]ListGuildChannels200ResponseInner, bool) {
+func (o *ResolvedObjectsResponse) GetChannelsOk() (map[string]ListGuildChannels200ResponseInner, bool) {
 	if o == nil {
-		return nil, false
+		return map[string]ListGuildChannels200ResponseInner{}, false
 	}
-	return &o.Channels, true
+	return o.Channels, true
 }
 
 // SetChannels sets field value

@@ -1312,6 +1312,21 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test DefaultAPIService GetGuildRole", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var guildId string
+		var roleId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetGuildRole(context.Background(), guildId, roleId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test DefaultAPIService GetGuildScheduledEvent", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -1620,6 +1635,20 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 		var stickerId string
 
 		resp, httpRes, err := apiClient.DefaultAPI.GetSticker(context.Background(), stickerId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService GetStickerPack", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var packId string
+
+		resp, httpRes, err := apiClient.DefaultAPI.GetStickerPack(context.Background(), packId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -2309,6 +2338,19 @@ func Test_discord_DefaultAPIService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService SendSoundboardSound", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var channelId string
+
+		httpRes, err := apiClient.DefaultAPI.SendSoundboardSound(context.Background(), channelId).Execute()
+
+		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

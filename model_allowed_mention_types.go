@@ -12,76 +12,43 @@ package discord
 
 import (
 	"encoding/json"
-	"gopkg.in/validator.v2"
-	"fmt"
 )
 
-// AllowedMentionTypes - struct for AllowedMentionTypes
+// checks if the AllowedMentionTypes type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AllowedMentionTypes{}
+
+// AllowedMentionTypes struct for AllowedMentionTypes
 type AllowedMentionTypes struct {
-	String *string
 }
 
-// stringAsAllowedMentionTypes is a convenience function that returns string wrapped in AllowedMentionTypes
-func StringAsAllowedMentionTypes(v *string) AllowedMentionTypes {
-	return AllowedMentionTypes{
-		String: v,
-	}
+// NewAllowedMentionTypes instantiates a new AllowedMentionTypes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAllowedMentionTypes() *AllowedMentionTypes {
+	this := AllowedMentionTypes{}
+	return &this
 }
 
-
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *AllowedMentionTypes) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into String
-	err = newStrictDecoder(data).Decode(&dst.String)
-	if err == nil {
-		jsonString, _ := json.Marshal(dst.String)
-		if string(jsonString) == "{}" { // empty struct
-			dst.String = nil
-		} else {
-			if err = validator.Validate(dst.String); err != nil {
-				dst.String = nil
-			} else {
-				match++
-			}
-		}
-	} else {
-		dst.String = nil
-	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.String = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(AllowedMentionTypes)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(AllowedMentionTypes)")
-	}
+// NewAllowedMentionTypesWithDefaults instantiates a new AllowedMentionTypes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAllowedMentionTypesWithDefaults() *AllowedMentionTypes {
+	this := AllowedMentionTypes{}
+	return &this
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src AllowedMentionTypes) MarshalJSON() ([]byte, error) {
-	if src.String != nil {
-		return json.Marshal(&src.String)
+func (o AllowedMentionTypes) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
-
-	return nil, nil // no data in oneOf schemas
+	return json.Marshal(toSerialize)
 }
 
-// Get the actual instance
-func (obj *AllowedMentionTypes) GetActualInstance() (interface{}) {
-	if obj == nil {
-		return nil
-	}
-	if obj.String != nil {
-		return obj.String
-	}
-
-	// all schemas are nil
-	return nil
+func (o AllowedMentionTypes) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	return toSerialize, nil
 }
 
 type NullableAllowedMentionTypes struct {

@@ -48,6 +48,7 @@ type PrivateApplicationResponse struct {
 	RoleConnectionsVerificationUrl NullableString `json:"role_connections_verification_url,omitempty"`
 	Owner UserResponse `json:"owner"`
 	ApproximateGuildCount NullableInt32 `json:"approximate_guild_count,omitempty"`
+	ApproximateUserInstallCount int32 `json:"approximate_user_install_count"`
 	ExplicitContentFilter ApplicationExplicitContentFilterTypes `json:"explicit_content_filter"`
 	Team NullableTeamResponse `json:"team,omitempty"`
 }
@@ -58,7 +59,7 @@ type _PrivateApplicationResponse PrivateApplicationResponse
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse, explicitContentFilter ApplicationExplicitContentFilterTypes) *PrivateApplicationResponse {
+func NewPrivateApplicationResponse(id string, name string, description string, verifyKey string, flags int32, redirectUris []*string, owner UserResponse, approximateUserInstallCount int32, explicitContentFilter ApplicationExplicitContentFilterTypes) *PrivateApplicationResponse {
 	this := PrivateApplicationResponse{}
 	this.Id = id
 	this.Name = name
@@ -67,6 +68,7 @@ func NewPrivateApplicationResponse(id string, name string, description string, v
 	this.Flags = flags
 	this.RedirectUris = redirectUris
 	this.Owner = owner
+	this.ApproximateUserInstallCount = approximateUserInstallCount
 	this.ExplicitContentFilter = explicitContentFilter
 	return &this
 }
@@ -1040,6 +1042,30 @@ func (o *PrivateApplicationResponse) UnsetApproximateGuildCount() {
 	o.ApproximateGuildCount.Unset()
 }
 
+// GetApproximateUserInstallCount returns the ApproximateUserInstallCount field value
+func (o *PrivateApplicationResponse) GetApproximateUserInstallCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.ApproximateUserInstallCount
+}
+
+// GetApproximateUserInstallCountOk returns a tuple with the ApproximateUserInstallCount field value
+// and a boolean to check if the value has been set.
+func (o *PrivateApplicationResponse) GetApproximateUserInstallCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApproximateUserInstallCount, true
+}
+
+// SetApproximateUserInstallCount sets field value
+func (o *PrivateApplicationResponse) SetApproximateUserInstallCount(v int32) {
+	o.ApproximateUserInstallCount = v
+}
+
 // GetExplicitContentFilter returns the ExplicitContentFilter field value
 func (o *PrivateApplicationResponse) GetExplicitContentFilter() ApplicationExplicitContentFilterTypes {
 	if o == nil {
@@ -1183,6 +1209,7 @@ func (o PrivateApplicationResponse) ToMap() (map[string]interface{}, error) {
 	if o.ApproximateGuildCount.IsSet() {
 		toSerialize["approximate_guild_count"] = o.ApproximateGuildCount.Get()
 	}
+	toSerialize["approximate_user_install_count"] = o.ApproximateUserInstallCount
 	toSerialize["explicit_content_filter"] = o.ExplicitContentFilter
 	if o.Team.IsSet() {
 		toSerialize["team"] = o.Team.Get()
@@ -1202,6 +1229,7 @@ func (o *PrivateApplicationResponse) UnmarshalJSON(data []byte) (err error) {
 		"flags",
 		"redirect_uris",
 		"owner",
+		"approximate_user_install_count",
 		"explicit_content_filter",
 	}
 
